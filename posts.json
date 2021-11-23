@@ -1,1 +1,52 @@
-{"posts":[{"title":"Node Machine","imageName":"node-machine","link":"https://seattleowl.com/node-machine","tags":["singleplayer","tool","javaScript"]},{"title":"Valentine Generator","imageName":"valentine-generator","link":"https://seattleowl.com/valentine-generator","tags":["tool","javaScript"]},{"title":"Deck Master","imageName":"deck-master","link":"https://seattleowl.com/deck-master"},{"title":"Mastermind","imageName":"mastermind","link":"https://seattleowl.com/mastermind"},{"title":"Magic Gardens","imageName":"magic-gardens","link":"https://seattleowl.com/magic-gardens"},{"title":"Jack`o`Lantern Inc.","imageName":"jack-o-lantern-inc","link":"https://www.puzzlescript.net/play.html?p=88c1f7434eb361c1cf9aa56901e8a9c9"},{"title":"Esacpe Room Editor","imageName":"cye-editor","link":"https://seattleowl.com/cye-editor"},{"title":"MC Structure Builder","imageName":"mc-structure-builder","link":"https://seattleowl.com/mc-structure-builder"}]}
+{
+	"posts": [
+		{
+			"title": "The Sweater Thief",
+			"imageName": "TheSweaterThief",
+			"link": "https://seattleowl.itch.io/the-sweater-thief",
+			"tags": ["singleplayer", "javaScript"]
+		},
+		{
+			"title": "Node Machine",
+			"imageName": "node-machine",
+			"link": "https://seattleowl.com/node-machine",
+			"tags": ["singleplayer", "tool", "javaScript"]
+		},
+		{
+			"title": "Valentine Generator",
+			"imageName": "valentine-generator",
+			"link": "https://seattleowl.com/valentine-generator",
+			"tags": ["tool", "javaScript"]
+		},
+		{
+			"title": "Deck Master",
+			"imageName": "deck-master",
+			"link": "https://seattleowl.com/deck-master"
+		},
+		{
+			"title": "Mastermind",
+			"imageName": "mastermind",
+			"link": "https://seattleowl.com/mastermind"
+		},
+		{
+			"title": "Magic Gardens",
+			"imageName": "magic-gardens",
+			"link": "https://seattleowl.com/magic-gardens"
+		},
+		{
+			"title": "Jack`o`Lantern Inc.",
+			"imageName": "jack-o-lantern-inc",
+			"link": "https://www.puzzlescript.net/play.html?p=88c1f7434eb361c1cf9aa56901e8a9c9"
+		},
+		{
+			"title": "Esacpe Room Editor",
+			"imageName": "cye-editor",
+			"link": "https://seattleowl.com/cye-editor"
+		},
+		{
+			"title": "MC Structure Builder",
+			"imageName": "mc-structure-builder",
+			"link": "https://seattleowl.com/mc-structure-builder"
+		}
+	]
+}

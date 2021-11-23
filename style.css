@@ -201,3 +201,13 @@ a {
 	background-color: #fc9c9c;
 	color: black;
 }
+
+.post.about {
+	width: min(80vw, 800px);
+	margin: 0 0 150px;
+	height: auto;
+	padding-bottom: 32px;
+}
+.post {
+	width: min(80vw, 350px);
+}
