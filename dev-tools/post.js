@@ -33,11 +33,12 @@ fs.readdir("../images/posts").then((files) => {
 					"2player",
 					"4player",
 					"online",
-					"stratergy",
+					"strategy",
+					"rougelike",
 					"singleplayer",
 					"tool",
 					"puzzleScript",
-					"javaScript",
+					"javascript",
 					"godot",
 					"beta"
 				]

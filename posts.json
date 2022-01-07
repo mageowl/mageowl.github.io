@@ -4,50 +4,43 @@
 			"title": "Super Snow Shooter",
 			"imageName": "super-snow-shooter",
 			"link": "super-snow-shooter",
-			"tags": [
-				"2player",
-				"4player",
-				"online",
-				"singleplayer",
-				"javaScript",
-				"beta"
-			]
+			"tags": ["2player", "4player", "online", "javascript", "beta"]
 		},
 		{
 			"title": "The Sweater Thief",
 			"imageName": "TheSweaterThief",
 			"link": "https://seattleowl.itch.io/the-sweater-thief",
-			"tags": ["singleplayer", "javaScript"]
+			"tags": ["singleplayer", "javascript"]
 		},
 		{
 			"title": "Node Machine",
 			"imageName": "node-machine",
 			"link": "https://seattleowl.com/node-machine",
-			"tags": ["tool", "javaScript"]
+			"tags": ["tool", "javascript"]
 		},
 		{
 			"title": "Valentine Generator",
 			"imageName": "valentine-generator",
 			"link": "https://seattleowl.com/valentine-generator",
-			"tags": ["tool", "javaScript"]
+			"tags": ["tool", "javascript"]
 		},
 		{
 			"title": "Deck Master",
 			"imageName": "deck-master",
 			"link": "https://seattleowl.com/deck-master",
-			"tags": ["singleplayer", "javaScript"]
+			"tags": ["singleplayer", "javascript", "rougelike"]
 		},
 		{
 			"title": "Mastermind",
 			"imageName": "mastermind",
 			"link": "https://seattleowl.com/mastermind",
-			"tags": ["singleplayer", "javaScript"]
+			"tags": ["singleplayer", "javascript"]
 		},
 		{
 			"title": "Magic Gardens",
 			"imageName": "magic-gardens",
 			"link": "https://seattleowl.com/magic-gardens",
-			"tags": ["singleplayer", "godot"]
+			"tags": ["singleplayer", "godot", "rougelike"]
 		},
 		{
 			"title": "Jack`o`Lantern Inc.",
@@ -59,13 +52,13 @@
 			"title": "Esacpe Room Editor",
 			"imageName": "cye-editor",
 			"link": "https://seattleowl.com/cye-editor",
-			"tags": ["javaScript", "tool"]
+			"tags": ["javascript", "tool"]
 		},
 		{
 			"title": "MC Structure Builder",
 			"imageName": "mc-structure-builder",
 			"link": "https://seattleowl.com/mc-structure-builder",
-			"tags": ["javaScript", "tool"]
+			"tags": ["javascript", "tool"]
 		}
 	]
 }

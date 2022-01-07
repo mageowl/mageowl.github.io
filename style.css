@@ -3,8 +3,9 @@
 :root {
 	--color-black: #333333;
 	--color-white: #ffffff;
-	--color-purple-1: #4e008b;
-	--color-purple-2: #c22fdb;
+	--color-cloak-purple: #4e008b;
+	--color-magic-purple: #c22fdb;
+	--color-beta-green: #36cf36;
 }
 
 body {
@@ -19,7 +20,7 @@ body {
 }
 
 a {
-	color: var(--color-purple-2);
+	color: var(--color-magic-purple);
 	text-decoration: none !important;
 }
 
@@ -189,7 +190,7 @@ a {
 	text-align: center;
 	line-height: 50px;
 	display: block;
-	box-shadow: var(--color-purple-1) 0 5px 5px;
+	box-shadow: var(--color-cloak-purple) 0 5px 5px;
 }
 
 #banner.blm {
@@ -239,9 +240,13 @@ html.show-beta .post.beta {
 }
 
 .post div.tag-list span {
-	background-color: #c22fdb;
+	background-color: var(--color-magic-purple);
 	border-radius: 4px;
 	margin: 2px;
 	padding: 0 4px;
 	float: left;
+}
+
+.post div.tag-list span.beta {
+	background-color: var(--color-beta-green);
 }

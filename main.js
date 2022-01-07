@@ -25,6 +25,7 @@ fetch("posts.json")
 			post.tags.forEach((tag) => {
 				let tagEl = document.createElement("span");
 				tagEl.innerHTML = tag;
+				if (tag === "beta") tagEl.classList.add("beta");
 				tags.append(tagEl);
 			});
 			tags.classList.add("tag-list");
