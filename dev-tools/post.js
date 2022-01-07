@@ -38,7 +38,8 @@ fs.readdir("../images/posts").then((files) => {
 					"tool",
 					"puzzleScript",
 					"javaScript",
-					"godot"
+					"godot",
+					"beta"
 				]
 			}
 		])

@@ -211,3 +211,37 @@ a {
 .post {
 	width: min(80vw, 350px);
 }
+
+/* TAGS */
+.post.beta {
+	display: none;
+}
+
+html.show-beta .post.beta {
+	display: inline-block;
+}
+
+.post div.tag-list {
+	opacity: 0;
+	margin-top: -385px;
+	width: 310px;
+	height: 310px;
+	position: absolute;
+	color: white;
+	border-radius: 32px;
+	background-color: #3333338a;
+	transition: opacity 200ms;
+	padding: 20px;
+}
+
+.post:hover div.tag-list {
+	opacity: 1;
+}
+
+.post div.tag-list span {
+	background-color: #c22fdb;
+	border-radius: 4px;
+	margin: 2px;
+	padding: 0 4px;
+	float: left;
+}
