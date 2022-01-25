@@ -22,7 +22,7 @@ fetch("posts.json")
 			if (post.tags.includes("beta")) el.classList.add("beta");
 
 			let tags = document.createElement("div");
-			post.tags.forEach((tag) => {
+			post.tags.sort().forEach((tag) => {
 				let tagEl = document.createElement("span");
 				tagEl.innerHTML = tag;
 				if (tag === "beta") tagEl.classList.add("beta");

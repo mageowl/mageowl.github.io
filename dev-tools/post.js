@@ -40,7 +40,8 @@ fs.readdir("../images/posts").then((files) => {
 					"puzzleScript",
 					"javascript",
 					"godot",
-					"beta"
+					"beta",
+					"platformer"
 				]
 			}
 		])

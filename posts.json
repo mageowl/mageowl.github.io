@@ -4,13 +4,20 @@
 			"title": "Super Snow Shooter",
 			"imageName": "super-snow-shooter",
 			"link": "super-snow-shooter",
-			"tags": ["2player", "4player", "online", "javascript", "beta"]
+			"tags": [
+				"2player",
+				"4player",
+				"online",
+				"javascript",
+				"beta",
+				"platformer"
+			]
 		},
 		{
 			"title": "The Sweater Thief",
 			"imageName": "TheSweaterThief",
 			"link": "https://seattleowl.itch.io/the-sweater-thief",
-			"tags": ["singleplayer", "javascript"]
+			"tags": ["singleplayer", "javascript", "platformer"]
 		},
 		{
 			"title": "Node Machine",
