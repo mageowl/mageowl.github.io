@@ -3,6 +3,8 @@ let header = document.getElementById("header");
 
 let search = /^.*\/search\/?(\?.*)?$/.test(location.href);
 
+document.querySelector("#age").innerHTML = new Date().getFullYear() - 2010;
+
 fetch("posts.json")
 	.then((response) => response.json())
 	.then((data) => {

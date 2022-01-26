@@ -37,10 +37,11 @@ a {
 }
 
 #img {
-	width: 156px;
+	width: 192px;
 	margin: auto;
 	display: block;
 	margin-top: 75px;
+	image-rendering: pixelated;
 }
 
 #background {
