@@ -36,6 +36,10 @@ a {
 	color: white;
 }
 
+#title > span {
+	letter-spacing: 7px;
+}
+
 #img {
 	width: 192px;
 	margin: auto;

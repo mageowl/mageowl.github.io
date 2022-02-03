@@ -16,37 +16,37 @@
 		{
 			"title": "The Sweater Thief",
 			"imageName": "the-sweater-thief",
-			"link": "https://seattleowl.itch.io/the-sweater-thief",
+			"link": "https://mageowl.itch.io/the-sweater-thief",
 			"tags": ["singleplayer", "javascript", "platformer"]
 		},
 		{
 			"title": "Node Machine",
 			"imageName": "node-machine",
-			"link": "https://seattleowl.com/node-machine",
+			"link": "node-machine",
 			"tags": ["tool", "javascript"]
 		},
 		{
 			"title": "Valentine Generator",
 			"imageName": "valentine-generator",
-			"link": "https://seattleowl.com/valentine-generator",
+			"link": "valentine-generator",
 			"tags": ["tool", "javascript"]
 		},
 		{
 			"title": "Deck Master",
 			"imageName": "deck-master",
-			"link": "https://seattleowl.com/deck-master",
+			"link": "deck-master",
 			"tags": ["singleplayer", "javascript", "rougelike"]
 		},
 		{
 			"title": "Mastermind",
 			"imageName": "mastermind",
-			"link": "https://seattleowl.com/mastermind",
+			"link": "mastermind",
 			"tags": ["singleplayer", "javascript"]
 		},
 		{
 			"title": "Magic Gardens",
 			"imageName": "magic-gardens",
-			"link": "https://seattleowl.com/magic-gardens",
+			"link": "magic-gardens",
 			"tags": ["singleplayer", "godot", "rougelike"]
 		},
 		{
@@ -58,13 +58,13 @@
 		{
 			"title": "Esacpe Room Editor",
 			"imageName": "cye-editor",
-			"link": "https://seattleowl.com/cye-editor",
+			"link": "cye-editor",
 			"tags": ["javascript", "tool"]
 		},
 		{
 			"title": "MC Structure Builder",
 			"imageName": "mc-structure-builder",
-			"link": "https://seattleowl.com/mc-structure-builder",
+			"link": "mc-structure-builder",
 			"tags": ["javascript", "tool"]
 		}
 	]
