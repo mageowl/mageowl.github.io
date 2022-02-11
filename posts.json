@@ -4,14 +4,7 @@
 			"title": "Super Snow Shooter",
 			"imageName": "super-snow-shooter",
 			"link": "super-snow-shooter",
-			"tags": [
-				"2player",
-				"4player",
-				"online",
-				"javascript",
-				"beta",
-				"platformer"
-			]
+			"tags": ["2player", "4player", "online", "javascript", "platformer"]
 		},
 		{
 			"title": "The Sweater Thief",
