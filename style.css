@@ -195,7 +195,7 @@ a {
 	text-align: center;
 	line-height: 50px;
 	display: block;
-	box-shadow: var(--color-cloak-purple) 0 5px 5px;
+	box-shadow: #3d3d3d96 0 5px 5px;
 }
 
 #banner.blm {
@@ -206,6 +206,11 @@ a {
 #banner.valentines {
 	background-color: #fc9c9c;
 	color: black;
+}
+
+#banner.ukraine {
+	background: #3044b4;
+	color: white;
 }
 
 .post.about {
