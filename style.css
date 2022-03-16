@@ -3,8 +3,8 @@
 :root {
 	--color-black: #333333;
 	--color-white: #ffffff;
-	--color-cloak-purple: #3b2fdb;
-	--color-magic-purple: #e0be25;
+	--color-cloak-purple: #4e008b;
+	--color-magic-purple: #c22fdb;
 	--color-beta-green: #36cf36;
 }
 
@@ -195,7 +195,7 @@ a {
 	text-align: center;
 	line-height: 50px;
 	display: block;
-	box-shadow: #3d3d3d96 0 5px 5px;
+	box-shadow: #42424238 0 5px 5px;
 }
 
 #banner.blm {
