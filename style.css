@@ -204,16 +204,47 @@ a {
 	height: calc(100% - 50px);
 }
 
-#banner {
+.post.about {
+	width: min(80vw, 800px);
+	margin: 0 0 150px;
+	height: auto;
+	padding-bottom: 32px;
+}
+.post {
+	width: min(80vw, 350px);
+}
+
+#header {
 	position: fixed;
 	z-index: 500;
 	top: 0;
 	width: 100vw;
 	height: 50px;
-	text-align: center;
 	line-height: 50px;
-	display: block;
 	box-shadow: #42424238 0 5px 5px;
+
+	--header-size: 2fr;
+	--banner-size: 1fr;
+
+	display: grid;
+	grid-template-columns: var(--header-size) var(--banner-size);
+	grid-template-rows: 1fr;
+	transition: transform 200ms;
+	transform: translateY(0);
+}
+
+#header.no-banner {
+	--banner-size: 0fr;
+}
+
+#header.no-banner #banner {
+	display: none;
+}
+
+#banner {
+	text-align: center;
+	display: block;
+	grid-area: 1 / 2 / 2 / 3;
 }
 
 #banner.blm {
@@ -231,14 +262,20 @@ a {
 	color: white;
 }
 
-.post.about {
-	width: min(80vw, 800px);
-	margin: 0 0 150px;
-	height: auto;
-	padding-bottom: 32px;
+#header.top-of-page {
+	--header-size: 0fr;
 }
-.post {
-	width: min(80vw, 350px);
+
+#header.top-of-page #nav {
+	display: none;
+}
+
+#nav {
+	grid-area: 1 / 1 / 2 / 2;
+}
+
+#header.top-of-page.no-banner {
+	transform: translateY(-50px);
 }
 
 /* TAGS */
@@ -286,11 +323,11 @@ html.show-beta .post.beta {
 		background: url("images/owl_closed.png") center/contain no-repeat;
 	}
 
-	69.5% {
+	65.5% {
 		background: url("images/owl_closed.png") center/contain no-repeat;
 	}
 
-	70% {
+	65.6% {
 		background: url("images/owl.png") center/contain no-repeat;
 	}
 	75% {
