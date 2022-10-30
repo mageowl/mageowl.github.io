@@ -13,18 +13,6 @@
 			"tags": ["singleplayer", "javascript", "platformer"]
 		},
 		{
-			"title": "Node Machine",
-			"imageName": "node-machine",
-			"link": "node-machine",
-			"tags": ["tool", "javascript"]
-		},
-		{
-			"title": "Valentine Generator",
-			"imageName": "valentine-generator",
-			"link": "valentine-generator",
-			"tags": ["tool", "javascript"]
-		},
-		{
 			"title": "Deck Master",
 			"imageName": "deck-master",
 			"link": "deck-master",
@@ -47,6 +35,18 @@
 			"imageName": "jack-o-lantern-inc",
 			"link": "https://www.puzzlescript.net/play.html?p=88c1f7434eb361c1cf9aa56901e8a9c9",
 			"tags": ["singleplayer", "puzzleScript"]
+		},
+		{
+			"title": "Node Machine",
+			"imageName": "node-machine",
+			"link": "node-machine",
+			"tags": ["tool", "javascript"]
+		},
+		{
+			"title": "Valentine Generator",
+			"imageName": "valentine-generator",
+			"link": "valentine-generator",
+			"tags": ["tool", "javascript"]
 		},
 		{
 			"title": "Esacpe Room Editor",
