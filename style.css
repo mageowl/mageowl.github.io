@@ -3,6 +3,7 @@
 :root {
 	--color-black: #333333;
 	--color-white: #ffffff;
+	--color-night-purple: #211f24;
 	--color-cloak-purple: #4e008b;
 	--color-magic-purple: #c22fdb;
 	--color-beta-green: #36cf36;
@@ -214,6 +215,11 @@ a {
 	width: min(80vw, 350px);
 }
 
+@property --nav-size {
+	syntax: "<length>";
+	inherits: true;
+}
+
 #header {
 	position: fixed;
 	z-index: 500;
@@ -223,14 +229,16 @@ a {
 	line-height: 50px;
 	box-shadow: #42424238 0 5px 5px;
 
-	--header-size: 2fr;
+	--nav-size: 2fr;
 	--banner-size: 1fr;
 
 	display: grid;
-	grid-template-columns: var(--header-size) var(--banner-size);
+	grid-template-columns: var(--nav-size) var(--banner-size);
 	grid-template-rows: 1fr;
 	transition: transform 200ms;
 	transform: translateY(0);
+
+	transition: var(--nav-size) 200ms;
 }
 
 #header.no-banner {
@@ -263,15 +271,20 @@ a {
 }
 
 #header.top-of-page {
-	--header-size: 0fr;
-}
-
-#header.top-of-page #nav {
-	display: none;
+	--nav-size: 0fr;
 }
 
 #nav {
 	grid-area: 1 / 1 / 2 / 2;
+	overflow-x: hidden;
+
+	background-color: var(--color-night-purple);
+	color: white;
+	padding-left: 40px;
+}
+
+#header.top-of-page #nav {
+	padding: 0;
 }
 
 #header.top-of-page.no-banner {
