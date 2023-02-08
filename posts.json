@@ -1,64 +1,77 @@
 {
 	"posts": [
 		{
+			"title": "duck knight",
+			"imageName": "duck-knight",
+			"link": "mageowl.itch.io/duck-knight",
+			"tags": ["strategy", "rougelike", "singleplayer", "godot", "mobile"]
+		},
+		{
 			"title": "Super Snow Shooter",
 			"imageName": "super-snow-shooter",
 			"link": "super-snow-shooter",
-			"tags": ["2player", "4player", "online", "javascript", "platformer"]
+			"tags": [
+				"2player",
+				"4player",
+				"online",
+				"javascript",
+				"platformer",
+				"web"
+			]
 		},
 		{
 			"title": "The Sweater Thief",
 			"imageName": "the-sweater-thief",
 			"link": "https://mageowl.itch.io/the-sweater-thief",
-			"tags": ["singleplayer", "javascript", "platformer"]
+			"tags": ["singleplayer", "javascript", "platformer", "web"]
 		},
 		{
 			"title": "Deck Master",
 			"imageName": "deck-master",
 			"link": "deck-master",
-			"tags": ["singleplayer", "javascript", "rougelike"]
+			"tags": ["singleplayer", "javascript", "rougelike", "web"]
 		},
 		{
 			"title": "Mastermind",
 			"imageName": "mastermind",
 			"link": "mastermind",
-			"tags": ["singleplayer", "javascript"]
+			"tags": ["singleplayer", "javascript", "web"]
 		},
 		{
 			"title": "Magic Gardens",
 			"imageName": "magic-gardens",
 			"link": "magic-gardens",
-			"tags": ["singleplayer", "godot", "rougelike"]
+			"tags": ["singleplayer", "godot", "rougelike", "web"]
 		},
 		{
 			"title": "Jack`o`Lantern Inc.",
 			"imageName": "jack-o-lantern-inc",
 			"link": "https://www.puzzlescript.net/play.html?p=88c1f7434eb361c1cf9aa56901e8a9c9",
-			"tags": ["singleplayer", "puzzleScript"]
+			"tags": ["singleplayer", "puzzleScript", "web"]
 		},
 		{
 			"title": "Node Machine",
 			"imageName": "node-machine",
 			"link": "node-machine",
-			"tags": ["tool", "javascript"]
+			"tags": ["tool", "javascript", "web"]
 		},
 		{
 			"title": "Valentine Generator",
 			"imageName": "valentine-generator",
 			"link": "valentine-generator",
-			"tags": ["tool", "javascript"]
+			"tags": ["tool", "javascript", "web"]
 		},
 		{
 			"title": "Esacpe Room Editor",
 			"imageName": "cye-editor",
 			"link": "cye-editor",
-			"tags": ["javascript", "tool"]
+			"tags": ["javascript", "tool", "web"]
 		},
 		{
 			"title": "MC Structure Builder",
 			"imageName": "mc-structure-builder",
 			"link": "mc-structure-builder",
-			"tags": ["javascript", "tool"]
+			"tags": ["javascript", "tool", "web"]
 		}
 	]
 }

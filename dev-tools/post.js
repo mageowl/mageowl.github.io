@@ -41,7 +41,9 @@ fs.readdir("../images/posts").then((files) => {
 					"javascript",
 					"godot",
 					"beta",
-					"platformer"
+					"platformer",
+					"mobile",
+					"web"
 				]
 			}
 		])
