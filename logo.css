@@ -15,7 +15,7 @@
   position: relative;
   display: block;
   z-index: -2;
-  filter: url(#goo) url(#gradient) drop-shadow(0 0 40px rgba(89, 67, 143, 0.5333333333));
+  filter: url(#goo) url(#gradient);
 }
 #logo .bubble .blob {
   width: 100px;
@@ -48,9 +48,12 @@
 #logo .owl {
   width: 256px;
   height: 256px;
-  background: url("images/owl.png") center no-repeat;
-  background-size: cover;
+  background: url("images/owl-sheet.png") no-repeat;
   image-rendering: pixelated;
+  background-position: center left;
+  background-size: cover;
+  opacity: 0;
+  animation: owl-intro 500ms steps(7) 200ms forwards;
 }
 #logo .circle {
   width: 302px;
@@ -155,5 +158,15 @@
   to {
     opacity: 1;
     transform: none;
+  }
+}
+@keyframes owl-intro {
+  from {
+    background-position: center left;
+    opacity: 0;
+  }
+  to {
+    background-position: center right;
+    opacity: 1;
   }
 }/*# sourceMappingURL=logo.css.map */

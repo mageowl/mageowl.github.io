@@ -22,9 +22,7 @@ $c-bubble-transparent: #59438f88;
 		display: block;
 
 		z-index: -2;
-		filter: url(#goo) url(#gradient) drop-shadow(0 0 40px $c-bubble-transparent);
-
-		// prettier-ignore
+		filter: url(#goo) url(#gradient);
 
 		.blob {
 			width: 100px;
@@ -63,9 +61,13 @@ $c-bubble-transparent: #59438f88;
 		width: 256px;
 		height: 256px;
 
-		background: url("images/owl.png") center no-repeat;
-		background-size: cover;
+		background: url("images/owl-sheet.png") no-repeat;
 		image-rendering: pixelated;
+		background-position: center left;
+		background-size: cover;
+		opacity: 0;
+
+		animation: owl-intro 500ms steps(7) 200ms forwards;
 	}
 
 	.circle {
@@ -179,5 +181,17 @@ $c-bubble-transparent: #59438f88;
 	to {
 		opacity: 1;
 		transform: none;
+	}
+}
+
+@keyframes owl-intro {
+	from {
+		background-position: center left;
+		opacity: 0;
+	}
+
+	to {
+		background-position: center right;
+		opacity: 1;
 	}
 }

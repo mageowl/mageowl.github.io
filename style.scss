@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Orelega+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Orelega+One&family=Fira+Code:wght@400&family=Fira+Code:wght@700&display=swap");
 @import url("./logo.css");
 
 $color-black: #333333;
@@ -12,7 +12,7 @@ body {
 	margin: 0;
 	font-family: "Noto Sans JP";
 	background-color: $c-bg;
-	color: #888;
+	color: #fff;
 	font-weight: normal;
 	text-transform: uppercase;
 	overflow-x: hidden;
@@ -169,6 +169,9 @@ a {
 }
 
 .post.about {
+	background-color: transparent;
+	font-family: "Fira Code", monospace;
+	font-size: 16px;
 	text-transform: none;
 	width: 800px;
 	max-width: none;
@@ -323,7 +326,9 @@ html.show-beta .post.beta {
 }
 
 .post div.tag-list span {
-	background-color: $color-magic-purple;
+	font-family: "Fira Code", monospace;
+	font-weight: bold;
+	font-size: 16px;
 	border-radius: 4px;
 	margin: 2px;
 	padding: 0 4px;

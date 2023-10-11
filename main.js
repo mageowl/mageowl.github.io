@@ -5,7 +5,10 @@ let search = /^.*\/search\/?(\?.*)?$/.test(location.href);
 
 document.querySelector("#age").innerHTML = new Date().getFullYear() - 2010;
 document.querySelector("#logo .bubble").classList.remove("start");
-document.querySelector("#logo").style.scale = innerHeight / 320 - 0.9;
+document.querySelector("#logo").style.scale = Math.min(
+	innerHeight / 320 - 0.9,
+	2
+);
 
 fetch("posts.json")
 	.then((response) => response.json())
