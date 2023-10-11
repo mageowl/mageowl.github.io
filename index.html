@@ -19,14 +19,15 @@
 		<meta property="og:type" content="website" />
 	</head>
 	<body>
-		<div id="header" class="top-of-page">
-			<div id="nav">MAGEOWL</div>
-			<a id="banner" class="ukraine" href="https://www.supportukraine.co/"
-				>🇺🇦 Support Ukraine! 🇺🇦</a
-			>
+		<div id="logo">
+			<div class="bubble start">
+				<div class="blob b-1"></div>
+				<div class="blob b-2"></div>
+				<div class="blob b-3"></div>
+			</div>
+			<div class="owl"></div>
+			<div class="circle"></div>
 		</div>
-		<div id="background"></div>
-		<div id="img"></div>
 		<div id="app">
 			<div class="post about">
 				<div>
@@ -60,6 +61,31 @@
 				<h2>About</h2>
 			</div>
 		</div>
+
+		<svg>
+			<filter id="goo">
+				<feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+				<feColorMatrix
+					in="blur"
+					type="matrix"
+					values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
+					result="goo"
+				/>
+				<feComposite in="SourceGraphic" in2="goo" operator="atop" />
+			</filter>
+
+			<filter id="gradient">
+				<feImage
+					xlink:href="images/gradient.png"
+					x="-250"
+					y="-250"
+					width="1000"
+					height="1000"
+					result="image-fill"
+				/>
+				<feComposite operator="lighter" in="image-fill" in2="SourceAlpha" />
+			</filter>
+		</svg>
 	</body>
 	<script src="main.js"></script>
 </html>

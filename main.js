@@ -4,6 +4,7 @@ let header = document.getElementById("header");
 let search = /^.*\/search\/?(\?.*)?$/.test(location.href);
 
 document.querySelector("#age").innerHTML = new Date().getFullYear() - 2010;
+document.querySelector("#logo .bubble").classList.remove("start");
 
 fetch("posts.json")
 	.then((response) => response.json())

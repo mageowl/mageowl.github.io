@@ -1,0 +1,366 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap");
+@import url("./logo.css");
+
+$color-black: #333333;
+$color-white: #ffffff;
+$c-bg: #0b132b;
+$color-cloak-purple: #7e57c2;
+$color-magic-purple: #9879ce;
+$color-beta-green: #36cf36;
+
+body {
+	margin: 0;
+	font-family: "Noto Sans JP";
+	background-color: $c-bg;
+	color: #888;
+	font-weight: normal;
+	text-transform: uppercase;
+	overflow-x: hidden;
+}
+
+a {
+	color: $color-magic-purple;
+	text-decoration: none !important;
+}
+
+#title {
+	font-size: 14px;
+	font-weight: bold;
+	width: 100vw;
+	text-align: center;
+	display: block;
+	letter-spacing: 5px;
+	padding-left: 5px;
+	font-weight: normal;
+	color: white;
+}
+
+#title > span {
+	letter-spacing: 7px;
+}
+
+/* #img {
+	margin: auto;
+	display: block;
+	margin-top: 75px;
+	background: url("images/totem_owl.svg") center/contain no-repeat;
+	position: relative;
+	height: 315px;
+	width: 300px;
+}
+
+#img::after {
+	content: " ";
+	background: url("images/glyph.svg") center/contain no-repeat;
+
+	display: block;
+	width: 300px;
+	height: 315px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	animation: circle 1s ease-out;
+}
+
+#img::before {
+	content: " ";
+	background: url("images/owl.png") center/contain no-repeat;
+
+	display: block;
+	height: 268px;
+	width: 268px;
+	image-rendering: pixelated;
+	position: absolute;
+	top: 15px;
+	left: 15px;
+	animation: totem-owl 1s ease-out;
+} */
+
+#background {
+	background: linear-gradient(140.87deg, #211f24 19.36%, #353e5a 100%);
+	height: 500px;
+	width: 200vw;
+	position: absolute;
+	top: 0;
+	left: -50vw;
+	z-index: -1;
+	border-radius: 0 0 50% 50%;
+}
+
+#background::after {
+	content: "";
+	position: absolute;
+	top: -70px;
+	left: 50vw;
+	z-index: -1;
+	width: 100vw;
+	height: 538px;
+	box-shadow: inset 0 70px 60px rgba(0, 0, 102, 0.3);
+}
+
+#app {
+	padding-top: 60px;
+	width: 100vw;
+	text-align: center;
+	max-width: 1000px;
+	margin: auto;
+	overflow-x: hidden;
+}
+
+.post {
+	width: calc(100% - 100px);
+	max-width: 350px;
+	background-color: $color-white;
+	margin-bottom: 150px;
+	margin-left: 50px;
+	margin-right: 50px;
+	box-shadow: 0 0 80px rgba(78, 0, 139, 0.12);
+	transform: translateY(0px);
+	transition: box-shadow 200ms, transform 200ms;
+	text-align: center;
+	cursor: pointer;
+	display: inline-block;
+	border-radius: 32px;
+}
+
+.post:hover {
+	box-shadow: 0 15px 80px rgba(78, 0, 139, 0.25);
+	transform: translateY(-5px);
+}
+
+.post h2 {
+	position: absolute;
+	bottom: -35px;
+	color: $color-white;
+	width: 100%;
+	margin-left: 0px;
+	opacity: 0.6;
+	letter-spacing: 2px;
+	padding-left: 2px;
+	font-size: 14px;
+	transition: opacity 200ms;
+	font-weight: normal;
+}
+
+.post:hover h2 {
+	opacity: 1;
+}
+
+.post:not(.about) img {
+	border-radius: 32px;
+	width: 100%;
+	aspect-ratio: 1;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+/* ABOUT */
+
+.post:not(.about) {
+	aspect-ratio: 1;
+}
+
+.post.about {
+	text-transform: none;
+	width: 800px;
+	max-width: none;
+	cursor: default;
+}
+
+.post.about h2 {
+	text-transform: uppercase;
+}
+
+.post.about span {
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	padding-right: 1px;
+}
+
+.post.about img.scroll {
+	position: relative;
+	bottom: -0px;
+	width: 50px;
+	opacity: 0.2;
+}
+
+.post.about img.media {
+	opacity: 0.5;
+	transition: opacity 200ms;
+	width: 30px;
+	padding-top: 10px;
+	padding-left: 5px;
+	padding-right: 5px;
+	border-radius: 0;
+	cursor: pointer;
+}
+
+.post.about div.media {
+	display: inline;
+}
+
+.post.about:hover div.media:not(:hover) img.media {
+	opacity: 0.8;
+}
+
+.post.about:hover div.media img.media:hover {
+	opacity: 0.8;
+}
+
+.post.about > div {
+	padding: 50px;
+	padding-bottom: 0px;
+	height: calc(100% - 50px);
+}
+
+.post.about {
+	width: min(80vw, 800px);
+	margin: 0 0 150px;
+	height: auto;
+	padding-bottom: 32px;
+}
+
+@property --nav-size {
+	syntax: "<length>";
+	inherits: true;
+}
+
+// #header {
+// 	position: fixed;
+// 	z-index: 500;
+// 	top: 0;
+// 	width: 100vw;
+// 	height: 50px;
+// 	line-height: 50px;
+// 	box-shadow: #42424238 0 5px 5px;
+
+// 	--nav-size: 2fr;
+// 	--banner-size: 1fr;
+
+// 	display: grid;
+// 	grid-template-columns: $nav-size $banner-size;
+// 	grid-template-rows: 1fr;
+// 	transition: transform 200ms;
+// 	transform: translateY(0);
+
+// 	transition: $nav-size 200ms;
+// }
+
+// #header.no-banner {
+// 	--banner-size: 0fr;
+// }
+
+// #header.no-banner #banner {
+// 	display: none;
+// }
+
+#banner {
+	text-align: center;
+	display: block;
+	grid-area: 1 / 2 / 2 / 3;
+}
+
+#banner.blm {
+	background-color: #141414;
+	color: white;
+}
+
+#banner.valentines {
+	background-color: #fc9c9c;
+	color: black;
+}
+
+#banner.ukraine {
+	background: #3044b4;
+	color: white;
+}
+
+#header.top-of-page {
+	--nav-size: 0fr;
+}
+
+#header.top-of-page #nav {
+	padding: 0;
+}
+
+#header.top-of-page.no-banner {
+	transform: translateY(-50px);
+}
+
+/* TAGS */
+.post.beta {
+	display: none;
+}
+
+html.show-beta .post.beta {
+	display: inline-block;
+}
+
+.post div.tag-list {
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	width: calc(100% - 40px);
+	aspect-ratio: 1;
+	position: absolute;
+	color: white;
+	border-radius: 32px;
+	background-color: #3333338a;
+	transition: opacity 200ms;
+	padding: 20px;
+}
+
+.post:hover div.tag-list {
+	opacity: 1;
+}
+
+.post div.tag-list span {
+	background-color: $color-magic-purple;
+	border-radius: 4px;
+	margin: 2px;
+	padding: 0 4px;
+	float: left;
+}
+
+.post div.tag-list span.beta {
+	background-color: $color-beta-green;
+}
+
+@keyframes totem-owl {
+	0% {
+		transform: rotateY(0deg) scale(0.2) translate(-100px, -50px);
+		opacity: 0.1;
+		background: url("images/owl_closed.png") center/contain no-repeat;
+	}
+
+	65.5% {
+		background: url("images/owl_closed.png") center/contain no-repeat;
+	}
+
+	65.6% {
+		background: url("images/owl.png") center/contain no-repeat;
+	}
+	75% {
+		transform: rotateY(480deg) translate(-1px, 0px);
+	}
+
+	100% {
+		transform: rotateY(540deg);
+		opacity: 1;
+	}
+}
+
+@keyframes circle {
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+	100% {
+		opacity: 1;
+		transform: none;
+	}
+}
