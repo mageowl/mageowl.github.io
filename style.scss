@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Orelega+One&display=swap");
 @import url("./logo.css");
 
 $color-black: #333333;
@@ -16,6 +16,13 @@ body {
 	font-weight: normal;
 	text-transform: uppercase;
 	overflow-x: hidden;
+
+	// Chrome
+	&::-webkit-scrollbar {
+		display: none;
+	}
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
 }
 
 a {

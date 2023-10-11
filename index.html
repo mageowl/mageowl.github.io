@@ -27,6 +27,7 @@
 			</div>
 			<div class="owl"></div>
 			<div class="circle"></div>
+			<div class="text">mageowl</div>
 		</div>
 		<div id="app">
 			<div class="post about">
@@ -77,13 +78,13 @@
 			<filter id="gradient">
 				<feImage
 					xlink:href="images/gradient.png"
-					x="-250"
-					y="-250"
-					width="1000"
-					height="1000"
+					x="-150"
+					y="-150"
+					width="500"
+					height="500"
 					result="image-fill"
 				/>
-				<feComposite operator="lighter" in="image-fill" in2="SourceAlpha" />
+				<feComposite operator="in" in="image-fill" in2="SourceAlpha" />
 			</filter>
 		</svg>
 	</body>
