@@ -60,6 +60,9 @@ div#content {
   span.sep {
     cursor: default;
     opacity: 0.5;
+
+    position: relative;
+    z-index: 100;
   }
 }
 

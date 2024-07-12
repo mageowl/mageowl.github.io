@@ -37,7 +37,7 @@ window.addEventListener("keydown", (e) => {
     setTimeout(() => selector.classList.remove("hidden"), 1);
 
     e.preventDefault();
-  } else if (e.key === "Space") {
+  } else if (e.key === "Space" || e.key === "Enter") {
     links[keyboardSelection].click();
   }
 });
