@@ -16,11 +16,11 @@ div#content {
   max-width: calc(50vw + 320px);
   margin: calc(40vh - 8rem) 0 0 calc(50vw - 320px);
 
-  & > :not(:last-child) {
+  &> :not(:last-child) {
     padding-bottom: 5px;
   }
 
-  & > :not(:first-child) {
+  &> :not(:first-child) {
     padding-top: 5px;
   }
 
@@ -55,6 +55,11 @@ div#content {
     &.github::before {
       background-image: url(../assets/github.svg);
     }
+  }
+
+  span.sep {
+    cursor: default;
+    opacity: 0.5;
   }
 }
 
