@@ -1,0 +1,114 @@
+/* Space Grotesk fonts */
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Fira+Code:wght@300..700&display=swap");
+
+body {
+  margin: 0;
+
+  font:
+    3rem "Space Grotesk",
+    sans-serif;
+  color: white;
+
+  background: black;
+}
+
+div#content {
+  max-width: calc(50vw + 320px);
+  margin: calc(40vh - 8rem) 0 0 calc(50vw - 320px);
+
+  & > :not(:last-child) {
+    padding-bottom: 5px;
+  }
+
+  & > :not(:first-child) {
+    padding-top: 5px;
+  }
+
+  h1 {
+    margin: 0;
+    cursor: default;
+    font:
+      bold 8rem "Space Mono",
+      monospace;
+  }
+
+  span.link {
+    display: block;
+    cursor: pointer;
+
+    &.icon::before {
+      content: " ";
+
+      display: inline-block;
+      width: 3rem;
+      height: 3rem;
+      margin-right: 10px;
+      vertical-align: -12px;
+
+      background: center / contain no-repeat;
+    }
+
+    &.discord::before {
+      background-image: url(../assets/discord.svg);
+    }
+
+    &.github::before {
+      background-image: url(../assets/github.svg);
+    }
+  }
+}
+
+div#selector {
+  position: fixed;
+  left: 0;
+  width: 100vw;
+  height: calc(3rem + 3px);
+  margin-top: 5px;
+
+  padding: 5px 0;
+  background: white;
+  mix-blend-mode: difference;
+
+  pointer-events: none;
+  transition: transform 0.1s ease-out;
+
+  &:not(.hidden) {
+    transition:
+      top 0.15s ease-out,
+      transform 0.1s ease-out;
+  }
+
+  &::after {
+    content: "→";
+    display: block;
+    width: 3rem;
+    margin-left: calc(50vw - 340px - 3rem);
+
+    color: black;
+    line-height: 3rem;
+  }
+
+  &.hidden {
+    transform: scaleY(0);
+  }
+}
+
+span#help {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  font:
+    1.6rem "Space Mono",
+    sans-serif;
+  font-variant-ligatures: no-common-ligatures;
+  user-select: none;
+
+  opacity: 0.3;
+}
+
+::selection {
+  color: black;
+  background: white;
+}
