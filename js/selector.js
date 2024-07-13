@@ -18,7 +18,7 @@ function updateSelection() {
 }
 
 function updateLinks() {
-  for (let link of links) {
+  links.forEach((link) => {
     link.addEventListener("mouseenter", updateSelection);
     link.addEventListener("mouseleave", updateSelection);
 
@@ -28,7 +28,7 @@ function updateLinks() {
       e.preventDefault();
       go(link.href);
     });
-  }
+  });
 }
 updateLinks();
 

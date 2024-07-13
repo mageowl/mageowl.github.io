@@ -39,8 +39,6 @@ div#center {
     color: inherit;
     text-decoration: none;
 
-    transition: opacity 0.2s;
-
     &.icon::before {
       content: " ";
 
@@ -62,10 +60,34 @@ div#center {
     }
   }
 
-  #links.hidden {
-    a,
-    span.sep {
+  #title {
+    width: fit-content;
+
+    transition: opacity 0.2s;
+
+    &.moving {
+      opacity: 0.5;
+      transition:
+        opacity 0.2s,
+        transform 0.2s;
+    }
+  }
+
+  #links {
+    transition:
+      opacity 0.2s,
+      transform 0.2s;
+
+    &.hidden {
       opacity: 0;
+    }
+
+    &.left {
+      transform: translateX(-100px);
+    }
+
+    &.right {
+      transform: translateX(100px);
     }
   }
 
@@ -77,8 +99,6 @@ div#center {
 
     position: relative;
     z-index: 100;
-
-    transition: opacity 0.2s;
   }
 }
 

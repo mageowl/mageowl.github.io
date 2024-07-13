@@ -71,7 +71,7 @@ window.router = {
     return router
       ._load(dataURL)
       .then(() => {
-        history.pushState({ ...state, dataURL }, "", href);
+        history.pushState({ ...state, dataURL, path: router.path }, "", href);
         window.dispatchEvent(new CustomEvent("navigate"));
       })
       .catch(() => {
@@ -81,15 +81,22 @@ window.router = {
             href,
           );
         } else {
-          history.pushState(
-            { ...state, dataURL: config.notFound + ".page.json" },
-            "",
-            href,
-          );
-          window.dispatchEvent(new CustomEvent("navigate"));
-          router._load(
-            router.joinPath(location.origin, config.notFound + ".page.json"),
-          );
+          router
+            ._load(
+              router.joinPath(location.origin, config.notFound + ".page.json"),
+            )
+            .then(() => {
+              history.pushState(
+                {
+                  ...state,
+                  dataURL: config.notFound + ".page.json",
+                  path: router.path,
+                },
+                "",
+                href,
+              );
+              window.dispatchEvent(new CustomEvent("navigate"));
+            });
         }
       });
   },
@@ -115,6 +122,7 @@ if (config.updateAnchors) {
 
 window.addEventListener("popstate", (e) => {
   if (e.state.dataURL != null) {
+    router.path = e.state.path;
     router
       ._load(e.state.dataURL)
       .then(() => window.dispatchEvent(new CustomEvent("navigate")));
@@ -127,6 +135,7 @@ if (history.state?.dataURL == null)
       dataURL: router.is404
         ? config.notFound + ".page.json"
         : router._dataURL(router.path),
+      path: router.path,
     },
     "",
   );

@@ -33,8 +33,9 @@ window.addEventListener("keydown", (e) => {
 
     e.preventDefault();
   } else if (e.key === " " || e.key === "Enter") {
+    if (links.length == 0 || keyboardSelection < 0) return;
     links[keyboardSelection].click();
-  } else if (e.key === "Backspace") {
+  } else if (e.key === "Backspace" && router.path != "/") {
     goBack();
   }
 });
