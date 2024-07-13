@@ -1,0 +1,9 @@
+[source]
+exclude = [".git"]
+
+[out]
+path = "docs/"
+lib_file = "js/router.js"
+
+[js]
+update_anchors = false

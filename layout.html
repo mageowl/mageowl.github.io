@@ -1,0 +1,24 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title sr-prop="title" />
+    <link href="css/page.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <noscript>this page require javascript.</noscript>
+    <h1 id="path-back" sr-prop="back"></h1>
+    <div id="center">
+      <h1 sr-prop="title" />
+      <div sr-prop="links" id="links" />
+    </div>
+    <span id="help"
+      >↑ ↓: move | <img src="assets/space.svg" width="26" height="26" /> or ↵:
+      select | <img src="assets/delete.svg" width="26" height="26" />: go
+      back</span
+    >
+    <div id="selector" class="hidden"></div>
+    <script src="js/page.js" type="module"></script>
+  </body>
+</html>
