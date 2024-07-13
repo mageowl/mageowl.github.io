@@ -2,13 +2,19 @@ import { goBack } from "./util.js";
 import { links } from "./links.js";
 
 export let keyboardSelection = -1;
+export let inputDisabled = false;
 
 export function setKeyboardSelection(v) {
   keyboardSelection = v;
 }
 
+export function setInputDisabled(v) {
+  inputDisabled = v;
+}
+
 window.addEventListener("keydown", (e) => {
-  if (e.key === "ArrowUp" || e.key === "ArrowDown" || e.key === "Tab") {
+  if (inputDisabled) e.preventDefault();
+  else if (e.key === "ArrowUp" || e.key === "ArrowDown" || e.key === "Tab") {
     e.preventDefault();
     if (links.length == 0) return;
 

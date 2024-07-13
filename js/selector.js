@@ -1,10 +1,16 @@
 import { links } from "./links.js";
-import { keyboardSelection, setKeyboardSelection } from "./keyboard.js";
-import { go } from "./util.js";
+import {
+  inputDisabled,
+  keyboardSelection,
+  setKeyboardSelection,
+} from "./keyboard.js";
+import { go, goBack } from "./util.js";
 
 const selector = document.querySelector("div#selector");
 
 function updateSelection() {
+  if (inputDisabled) return;
+
   const selected = document.querySelector("a:hover");
 
   if (selected != null) {
@@ -40,4 +46,9 @@ window.addEventListener("mousemove", () => {
   }
 
   setKeyboardSelection(-1);
+});
+
+let pathBack = document.querySelector("h1#path-back");
+pathBack.addEventListener("click", () => {
+  goBack();
 });

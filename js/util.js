@@ -1,25 +1,56 @@
-import { keyboardSelection, setKeyboardSelection } from "./keyboard.js";
+import {
+  keyboardSelection,
+  setInputDisabled,
+  setKeyboardSelection,
+} from "./keyboard.js";
 import { links } from "./links.js";
 
-export function sleep(ms) {
+function sleep(ms) {
   return new Promise((res) => setTimeout(res, ms));
 }
 
+function back() {
+  return new Promise((res) => {
+    const cb = () => {
+      res();
+      window.removeEventListener("navigate", cb);
+    };
+
+    history.back();
+    window.addEventListener("navigate", cb);
+  });
+}
+
 function animationStart(reverse = false) {
-  document
-    .querySelector("#links")
-    .classList.add("hidden", reverse ? "right" : "left");
+  setInputDisabled(true);
+
+  document.querySelector("#links").classList.add("hidden");
   document.querySelector("#selector").classList.add("hidden");
 
-  let titleOffset = document
-    .querySelector("#title")
-    .getBoundingClientRect().width;
-  document.querySelector("#title").style.transform =
-    `translateX(-${titleOffset}px)`;
-  document.querySelector("#title").classList.add("moving");
+  if (!reverse) {
+    let titleOffset = document
+      .querySelector("#title")
+      .getBoundingClientRect().width;
+    document.querySelectorAll("#title, #path-back").forEach((e) => {
+      e.style.transform = `translateX(-${titleOffset}px)`;
+      e.classList.add("moving");
+    });
+  } else {
+    document.querySelector("#title").classList.add("hidden");
+  }
 }
 
 function animationEnd(reverse = false) {
+  Array.from(document.querySelector("#links").children).forEach(
+    (el, i) => (el.style.transitionDelay = 0.05 * i + "s"),
+  );
+
+  if (reverse) {
+    document.querySelectorAll("#title, #path-back").forEach((e) => {
+      e.classList.remove("moving");
+    });
+  }
+
   document
     .querySelector("#links")
     .classList.remove("hidden", reverse ? "left" : "right");
@@ -38,15 +69,19 @@ function animationEnd(reverse = false) {
       setKeyboardSelection(-2);
     }
   }
+
+  setInputDisabled(false);
 }
 
 export async function go(to) {
   animationStart();
   await sleep(200);
-  document.querySelector("#links").classList.replace("left", "right");
+  document.querySelector("#links").classList.add("right");
   await router.goto(to, {}, true);
-  document.querySelector("#title").style.transform = "none";
-  document.querySelector("#title").classList.remove("moving");
+  document.querySelectorAll("#title, #path-back").forEach((e) => {
+    e.style.transform = "none";
+    e.classList.remove("moving");
+  });
   await sleep(200);
   animationEnd();
 }
@@ -54,10 +89,18 @@ export async function go(to) {
 export async function goBack() {
   animationStart(true);
   await sleep(200);
-  document.querySelector("#links").classList.replace("right", "left");
-  history.back();
-  document.querySelector("#title").style.transform = "none";
-  document.querySelector("#title").classList.remove("moving");
+  document.querySelector("#links").classList.add("left");
+  await back();
+
+  let titleOffset = document
+    .querySelector("#title")
+    .getBoundingClientRect().width;
+  document.querySelectorAll("#title, #path-back").forEach((e) => {
+    e.classList.add("moving");
+    e.classList.remove("hidden");
+    e.style.transform = `translateX(${titleOffset})`;
+  });
+
   await sleep(200);
   animationEnd(true);
 }
