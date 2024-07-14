@@ -1,0 +1,70 @@
+@media (max-width: 400px) {
+  /* override normal styles */
+  html {
+    body {
+      font-size: 1.5rem;
+      margin: 16px;
+    }
+
+    h1 {
+      font-size: 4rem;
+      line-height: 4.5rem;
+    }
+
+    div#center {
+      margin: 0;
+      width: 100%;
+      overflow-x: hidden;
+
+      #links {
+        .icon::before {
+          width: 32px;
+          height: 32px;
+
+          vertical-align: -8px;
+        }
+
+        a {
+          text-decoration: underline 2px;
+        }
+      }
+    }
+
+    h1#path-back {
+      left: 0;
+      bottom: 16px;
+      top: unset;
+      right: 0;
+
+      font-size: 1.5rem;
+      text-align: center;
+      line-height: 1.5rem;
+
+      text-decoration: underline 2px;
+      transform: none !important;
+
+      &::before {
+        content: "back to ";
+      }
+    }
+
+    span#help,
+    div#selector {
+      display: none;
+    }
+  }
+}
+
+@media (max-height: 800px) {
+  div#center {
+    margin-top: 0 !important;
+  }
+
+  h1#path-back {
+    top: 0 !important;
+  }
+
+  span#help {
+    display: none;
+  }
+}

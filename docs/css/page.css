@@ -1,34 +1,36 @@
 /* Space Grotesk fonts */
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Fira+Code:wght@300..700&display=swap");
+@import url(/css/mobile.css);
 
 body {
   margin: 0;
 
   font:
-    3rem "Space Grotesk",
+    2.7rem "Space Grotesk",
     sans-serif;
   color: white;
 
   background: black;
+  overflow: hidden;
 }
 
 h1 {
   margin: 0 0 10px 0;
   cursor: default;
   font:
-    bold 8rem "Space Mono",
+    bold 7.6rem "Space Mono",
     monospace;
 }
 
 div#center {
   max-width: calc(50vw + 320px);
-  margin: calc(40vh - 8rem) 0 0 calc(50vw - 320px);
+  margin: calc(40vh - 7.6rem) 0 0 calc(50vw - 320px);
 
   & #links > :not(:last-child) {
     padding-bottom: 5px;
   }
 
-  & #links > :not(:first-child) {
+  & #links > * {
     padding-top: 5px;
   }
 
@@ -43,20 +45,24 @@ div#center {
       content: " ";
 
       display: inline-block;
-      width: 3rem;
-      height: 3rem;
+      width: 2.7rem;
+      height: 2.7rem;
       margin-right: 10px;
-      vertical-align: -12px;
+      vertical-align: -8px;
 
       background: center / contain no-repeat;
     }
 
     &.discord::before {
-      background-image: url(../assets/discord.svg);
+      background-image: url(/assets/discord.svg);
     }
 
     &.github::before {
-      background-image: url(../assets/github.svg);
+      background-image: url(/assets/github.svg);
+    }
+
+    &.modrinth::before {
+      background-image: url(/assets/modrinth.svg);
     }
   }
 
@@ -101,14 +107,16 @@ div#center {
     }
   }
 
-  span.sep {
+  span {
     display: block;
 
-    cursor: default;
-    opacity: 0.5;
+    &.sep {
+      cursor: default;
+      opacity: 0.5;
 
-    position: relative;
-    z-index: 100;
+      position: relative;
+      z-index: 100;
+    }
   }
 }
 
@@ -116,8 +124,8 @@ div#selector {
   position: fixed;
   left: 0;
   width: 100vw;
-  height: calc(3rem + 3px);
-  margin-top: 5px;
+  height: calc(2.7rem + 3px);
+  margin-top: 3px;
 
   padding: 5px 0;
   background: white;
@@ -135,11 +143,11 @@ div#selector {
   &::after {
     content: "→";
     display: block;
-    width: 3rem;
-    margin-left: calc(50vw - 340px - 3rem);
+    width: 2.7rem;
+    margin-left: calc(50vw - 340px - 2.7rem);
 
     color: black;
-    line-height: 3rem;
+    line-height: 2.7rem;
   }
 
   &.hidden {
@@ -168,7 +176,7 @@ span#help {
 
 h1#path-back {
   position: fixed;
-  top: calc(40vh - 8rem);
+  top: calc(40vh - 7.6rem);
   right: calc(50vw + 320px);
 
   cursor: pointer;

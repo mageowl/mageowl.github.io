@@ -9,18 +9,6 @@ function sleep(ms) {
   return new Promise((res) => setTimeout(res, ms));
 }
 
-function back() {
-  return new Promise((res) => {
-    const cb = () => {
-      res();
-      window.removeEventListener("navigate", cb);
-    };
-
-    history.back();
-    window.addEventListener("navigate", cb);
-  });
-}
-
 function animationStart(reverse = false) {
   setInputDisabled(true);
 
@@ -69,8 +57,6 @@ function animationEnd(reverse = false) {
       setKeyboardSelection(-2);
     }
   }
-
-  setInputDisabled(false);
 }
 
 export async function go(to) {
@@ -82,6 +68,7 @@ export async function go(to) {
     e.style.transform = "none";
     e.classList.remove("moving");
   });
+  setInputDisabled(false);
   await sleep(200);
   animationEnd();
 }
@@ -90,17 +77,21 @@ export async function goBack() {
   animationStart(true);
   await sleep(200);
   document.querySelector("#links").classList.add("left");
-  await back();
+
+  await router.goto(
+    ("/" + router.path.split("/").slice(0, -1).join("/")).replace("//", "/"),
+  );
 
   let titleOffset = document
     .querySelector("#title")
     .getBoundingClientRect().width;
   document.querySelectorAll("#title, #path-back").forEach((e) => {
+    e.style.transform = `translateX(-${titleOffset})`;
     e.classList.add("moving");
     e.classList.remove("hidden");
-    e.style.transform = `translateX(${titleOffset})`;
   });
 
+  setInputDisabled(false);
   await sleep(200);
   animationEnd(true);
 }
