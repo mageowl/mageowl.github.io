@@ -26,11 +26,11 @@ div#center {
   max-width: calc(50vw + 320px);
   margin: calc(40vh - 7.6rem) 0 0 calc(50vw - 320px);
 
-  & #links > :not(:last-child) {
+  #links > :not(:last-child) {
     padding-bottom: 5px;
   }
 
-  & #links > * {
+  #links > * {
     padding-top: 5px;
   }
 
@@ -84,12 +84,24 @@ div#center {
   }
 
   #links {
-    opacity: 0.2s;
+    transition: opacity 0.2s;
 
     & > * {
       transition:
         opacity 0.2s,
         transform 0.2s;
+
+      &:not(p) {
+        padding-top: 5px;
+      }
+    }
+
+    & > :not(:last-child) {
+      padding-bottom: 5px;
+    }
+
+    p {
+      max-width: 800px;
     }
 
     &.hidden:not(.left):not(.right) {
