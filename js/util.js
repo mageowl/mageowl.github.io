@@ -21,7 +21,7 @@ function animationStart(reverse = false) {
       .getBoundingClientRect().width;
     document.querySelectorAll("#title, #path-back").forEach((e) => {
       e.style.transform = `translateX(-${titleOffset}px)`;
-      e.classList.add("moving");
+      e.classList.add("moving", "transparent");
     });
   } else {
     document.querySelector("#title").classList.add("hidden");
@@ -35,7 +35,9 @@ function animationEnd(reverse = false) {
 
   if (reverse) {
     document.querySelectorAll("#title, #path-back").forEach((e) => {
-      e.classList.remove("moving");
+      e.classList.add("moving");
+      e.style.transform = "none";
+      setTimeout(() => e.classList.remove("moving"), 200);
     });
   }
 
@@ -66,7 +68,7 @@ export async function go(to) {
   await router.goto(to, {}, true);
   document.querySelectorAll("#title, #path-back").forEach((e) => {
     e.style.transform = "none";
-    e.classList.remove("moving");
+    e.classList.remove("moving", "transparent");
   });
   setInputDisabled(false);
   await sleep(200);
@@ -75,7 +77,6 @@ export async function go(to) {
 
 export async function goBack() {
   animationStart(true);
-  await sleep(200);
   document.querySelector("#links").classList.add("left");
 
   await router.goto(
@@ -86,9 +87,8 @@ export async function goBack() {
     .querySelector("#title")
     .getBoundingClientRect().width;
   document.querySelectorAll("#title, #path-back").forEach((e) => {
-    e.style.transform = `translateX(-${titleOffset})`;
-    e.classList.add("moving");
     e.classList.remove("hidden");
+    e.style.transform = `translateX(-${titleOffset}px)`;
   });
 
   setInputDisabled(false);
