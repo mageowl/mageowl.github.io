@@ -51,7 +51,12 @@ div#center {
   }
 
   #links {
-    max-height: calc(60vh - 6rem - 20px);
+    max-height: calc(60vh - 6rem - 40px);
+
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    padding-bottom: 20px;
 
     transition: opacity 0.2s;
 
@@ -127,6 +132,18 @@ div#center {
       &.itch::before {
         background-image: url(/assets/itch.svg);
       }
+    }
+
+    &::after {
+      content: " ";
+
+      display: block;
+      width: 100%;
+      height: 20px;
+      position: absolute;
+      bottom: calc(1.6rem + 20px);
+
+      background: linear-gradient(#0000, black);
     }
   }
 
