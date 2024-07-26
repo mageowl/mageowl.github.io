@@ -28,7 +28,8 @@ function updateLinks() {
     link.addEventListener("mouseenter", updateSelection);
     link.addEventListener("mouseleave", updateSelection);
 
-    if (link.origin != window.origin) return;
+    if (link.origin != window.origin || link.hasAttribute("data-force-reload"))
+      return;
 
     link.addEventListener("click", (e) => {
       e.preventDefault();
