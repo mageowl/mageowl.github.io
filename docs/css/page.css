@@ -182,13 +182,14 @@ div#selector {
   }
 
   &::after {
-    content: "→";
+    content: " ";
     display: block;
-    width: 2.7rem;
+    width: 48px;
+    height: 100%;
     margin-left: calc(50vw - 340px - 2.7rem);
+    margin-top: 8px;
 
-    color: black;
-    line-height: 2.7rem;
+    background: center / contain no-repeat url(/assets/arrow.svg);
   }
 
   &.hidden {
