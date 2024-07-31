@@ -1,1 +1,1 @@
-{"title":"simple router","back":"projects/","links":"\n  <span>a very rudementary ssg built in rust.</span>\n  <span>i used it to make this website.</span>\n  <span class=\"sep\">—</span>\n  <a href=\"https://github.com/mageowl/simple-router\" class=\"icon github\">view source</a>\n"}
+{"links":"\n  <span>a very rudementary ssg built in rust.</span>\n  <span>i used it to make this website.</span>\n  <span class=\"sep\">—</span>\n  <a href=\"https://github.com/mageowl/simple-router\" class=\"icon github\">view source</a>\n","back":"projects/","title":"simple router"}
