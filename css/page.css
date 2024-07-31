@@ -187,7 +187,7 @@ div#selector {
     width: 48px;
     height: 100%;
     margin-left: calc(50vw - 340px - 2.7rem);
-    margin-top: 8px;
+    margin-top: 3px;
 
     background: center / contain no-repeat url(/assets/arrow.svg);
   }
@@ -199,7 +199,7 @@ div#selector {
 
 span#help {
   position: fixed;
-  bottom: 10px;
+  bottom: 0;
   width: 100%;
 
   font:
@@ -208,11 +208,14 @@ span#help {
   font-variant-ligatures: no-common-ligatures;
   user-select: none;
   text-align: center;
+  color: #fff8;
 
-  opacity: 0.3;
+  background-color: black;
+  padding-bottom: 10px;
 
   img {
     transform: translateY(5px);
+    opacity: 0.5;
   }
 }
 

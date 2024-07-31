@@ -58,6 +58,10 @@
 @media (max-height: 800px) {
   div#center {
     margin-top: 0 !important;
+
+    #links {
+      max-height: calc(100vh - 6rem - 40px) !important;
+    }
   }
 
   h1#path-back {
