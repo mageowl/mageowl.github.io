@@ -1,5 +1,5 @@
 [source]
-exclude = [".git", ".ignore", "CNAME"]
+exclude = [".git", ".ignore"]
 
 [out]
 path = "docs/"
