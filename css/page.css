@@ -15,7 +15,7 @@
   --fg: black;
   --bg: white;
 
-  span.help img {
+  span#help img {
     filter: invert();
   }
 }
