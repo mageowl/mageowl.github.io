@@ -1,0 +1,172 @@
+div#center {
+  max-width: calc(50vw + 320px);
+  margin: calc(40vh - 7.6rem) 0 0 calc(50vw - 320px);
+
+  transition: opacity 0.2s;
+
+  h1#title {
+    width: fit-content;
+
+    transition: opacity 0.2s;
+
+    &.moving {
+      transition:
+        opacity 0.2s,
+        transform 0.2s;
+    }
+
+    &.transparent {
+      opacity: 0.5;
+    }
+
+    &.hidden {
+      opacity: 0;
+    }
+  }
+
+  #links {
+    max-height: calc(60vh - 6rem - 40px);
+
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    padding-bottom: 20px;
+
+    transition: opacity 0.2s;
+
+    & > :not(:last-child) {
+      padding-bottom: 5px;
+    }
+
+    & > * {
+      padding-top: 5px;
+
+      transition:
+        opacity 0.2s,
+        transform 0.2s;
+
+      &:not(p) {
+        padding-top: 5px;
+      }
+    }
+
+    & > :not(:last-child) {
+      padding-bottom: 5px;
+    }
+
+    p {
+      /*margin: 0;*/
+      max-width: 800px;
+    }
+
+    &.hidden:not(.left):not(.right) {
+      opacity: 0;
+    }
+
+    &.left > * {
+      opacity: 0;
+      transform: translateX(-100px);
+    }
+
+    &.right > * {
+      opacity: 0;
+      transform: translateX(100px);
+    }
+
+    > a {
+      display: block;
+      cursor: pointer;
+
+      text-decoration: none;
+
+      &.icon::before {
+        content: " ";
+
+        display: inline-block;
+        width: 2.7rem;
+        height: 2.7rem;
+        margin-right: 10px;
+        vertical-align: -8px;
+
+        /*background: center / contain no-repeat;*/
+        background: var(--fg);
+      }
+
+      &.discord::before {
+        mask: url(/assets/discord.svg);
+      }
+
+      &.github::before {
+        mask: url(/assets/github.svg);
+      }
+
+      &.modrinth::before {
+        mask: url(/assets/modrinth.svg);
+      }
+
+      &.itch::before {
+        mask: url(/assets/itch.svg);
+      }
+    }
+
+    &::after {
+      content: " ";
+
+      display: block;
+      width: 100%;
+      height: 20px;
+      position: absolute;
+      bottom: calc(1.6rem + 20px);
+
+      background: linear-gradient(#0000, var(--bg));
+    }
+  }
+
+  span,
+  em {
+    display: block;
+
+    &.sep {
+      cursor: default;
+      opacity: 0.5;
+
+      position: relative;
+      z-index: 100;
+    }
+  }
+
+  &.hidden {
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+      opacity 0.2s,
+      visibility 0s 0.2s;
+  }
+}
+
+h1#path-back {
+  position: fixed;
+  top: calc(40vh - 7.6rem);
+  right: calc(50vw + 320px);
+
+  cursor: pointer;
+
+  text-align: right;
+  opacity: 0.5;
+
+  transition: opacity 0.2s;
+
+  &.moving {
+    transition:
+      opacity 0.2s,
+      transform 0.2s;
+  }
+  &.transparent {
+    opacity: 0.5;
+  }
+
+  &:hover {
+    opacity: 0.7;
+  }
+}

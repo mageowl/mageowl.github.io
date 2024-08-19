@@ -1,6 +1,20 @@
 /* Space Grotesk fonts */
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Fira+Code:wght@300..700&display=swap");
+
 @import url(/css/mobile.css);
+@import url(/css/content.css);
+@import url(/css/selector.css);
+@import url(/css/themes.css);
+
+:root {
+  --fg: white;
+  --bg: black;
+}
+
+:root.light-mode {
+  --fg: black;
+  --bg: white;
+}
 
 body {
   margin: 0;
@@ -8,9 +22,9 @@ body {
   font:
     2.7rem "Space Grotesk",
     sans-serif;
-  color: white;
+  color: var(--fg);
 
-  background: black;
+  background: var(--bg);
   overflow-x: hidden;
 }
 
@@ -26,177 +40,6 @@ a {
   color: inherit;
 }
 
-div#center {
-  max-width: calc(50vw + 320px);
-  margin: calc(40vh - 7.6rem) 0 0 calc(50vw - 320px);
-
-  h1#title {
-    width: fit-content;
-
-    transition: opacity 0.2s;
-
-    &.moving {
-      transition:
-        opacity 0.2s,
-        transform 0.2s;
-    }
-
-    &.transparent {
-      opacity: 0.5;
-    }
-
-    &.hidden {
-      opacity: 0;
-    }
-  }
-
-  #links {
-    max-height: calc(60vh - 6rem - 40px);
-
-    overflow-y: auto;
-    overflow-x: hidden;
-    scrollbar-width: none;
-    padding-bottom: 20px;
-
-    transition: opacity 0.2s;
-
-    & > :not(:last-child) {
-      padding-bottom: 5px;
-    }
-
-    & > * {
-      padding-top: 5px;
-
-      transition:
-        opacity 0.2s,
-        transform 0.2s;
-
-      &:not(p) {
-        padding-top: 5px;
-      }
-    }
-
-    & > :not(:last-child) {
-      padding-bottom: 5px;
-    }
-
-    p {
-      /*margin: 0;*/
-      max-width: 800px;
-    }
-
-    &.hidden:not(.left):not(.right) {
-      opacity: 0;
-    }
-
-    &.left > * {
-      opacity: 0;
-      transform: translateX(-100px);
-    }
-
-    &.right > * {
-      opacity: 0;
-      transform: translateX(100px);
-    }
-
-    > a {
-      display: block;
-      cursor: pointer;
-
-      text-decoration: none;
-
-      &.icon::before {
-        content: " ";
-
-        display: inline-block;
-        width: 2.7rem;
-        height: 2.7rem;
-        margin-right: 10px;
-        vertical-align: -8px;
-
-        background: center / contain no-repeat;
-      }
-
-      &.discord::before {
-        background-image: url(/assets/discord.svg);
-      }
-
-      &.github::before {
-        background-image: url(/assets/github.svg);
-      }
-
-      &.modrinth::before {
-        background-image: url(/assets/modrinth.svg);
-      }
-
-      &.itch::before {
-        background-image: url(/assets/itch.svg);
-      }
-    }
-
-    &::after {
-      content: " ";
-
-      display: block;
-      width: 100%;
-      height: 20px;
-      position: absolute;
-      bottom: calc(1.6rem + 20px);
-
-      background: linear-gradient(#0000, black);
-    }
-  }
-
-  span,
-  em {
-    display: block;
-
-    &.sep {
-      cursor: default;
-      opacity: 0.5;
-
-      position: relative;
-      z-index: 100;
-    }
-  }
-}
-
-div#selector {
-  position: fixed;
-  left: 0;
-  width: 100vw;
-  height: calc(2.7rem + 3px);
-  margin-top: 3px;
-
-  padding: 5px 0;
-  background: white;
-  mix-blend-mode: difference;
-
-  pointer-events: none;
-  transition: transform 0.1s ease-out;
-
-  &:not(.hidden) {
-    transition:
-      top 0.1s ease-out,
-      transform 0.1s ease-out;
-  }
-
-  &::after {
-    content: " ";
-    display: block;
-    width: 48px;
-    height: 100%;
-    margin-left: calc(50vw - 340px - 2.7rem);
-    margin-top: 3px;
-
-    background: center / contain no-repeat url(/assets/arrow.svg);
-  }
-
-  &.hidden {
-    transform: scaleY(0);
-  }
-}
-
 span#help {
   position: fixed;
   bottom: 0;
@@ -208,9 +51,9 @@ span#help {
   font-variant-ligatures: no-common-ligatures;
   user-select: none;
   text-align: center;
-  color: #fff8;
+  color: color-mix(in srgb, var(--fg) 50%, transparent);
 
-  background-color: black;
+  background-color: var(--bg);
   padding-bottom: 10px;
 
   img {
@@ -219,33 +62,7 @@ span#help {
   }
 }
 
-h1#path-back {
-  position: fixed;
-  top: calc(40vh - 7.6rem);
-  right: calc(50vw + 320px);
-
-  cursor: pointer;
-
-  text-align: right;
-  opacity: 0.5;
-
-  transition: opacity 0.2s;
-
-  &.moving {
-    transition:
-      opacity 0.2s,
-      transform 0.2s;
-  }
-  &.transparent {
-    opacity: 0.5;
-  }
-
-  &:hover {
-    opacity: 0.7;
-  }
-}
-
 ::selection {
-  color: black;
-  background: white;
+  color: var(--bg);
+  background: var(--fg);
 }

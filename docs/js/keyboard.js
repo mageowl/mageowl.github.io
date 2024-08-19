@@ -1,8 +1,18 @@
 import { goBack } from "./util.js";
 import { links } from "./links.js";
+import {
+  handleLetter,
+  handleEnterTheme,
+  handleBackspace,
+  hideThemePicker,
+  openThemePicker,
+  pickerOpen,
+} from "./themes.js";
 
 export let keyboardSelection = -1;
 export let inputDisabled = false;
+
+const selector = document.querySelector("div#selector");
 
 export function setKeyboardSelection(v) {
   keyboardSelection = v;
@@ -14,9 +24,19 @@ export function setInputDisabled(v) {
 
 window.addEventListener("keydown", (e) => {
   if (inputDisabled) e.preventDefault();
-  else if (e.key === "ArrowUp" || e.key === "ArrowDown" || e.key === "Tab") {
+  else if (
+    pickerOpen &&
+    "abcdefghijklmnopqrstuvwxyz ".includes(e.key.toLowerCase()) &&
+    !(e.ctrlKey || e.metaKey)
+  ) {
+    handleLetter(e.key.toLowerCase());
+  } else if (pickerOpen && e.key === "Enter") {
+    handleEnterTheme();
+  } else if (pickerOpen && e.key === "Backspace") {
+    handleBackspace();
+  } else if (e.key === "ArrowUp" || e.key === "ArrowDown" || e.key === "Tab") {
     e.preventDefault();
-    if (links.length == 0) return;
+    if (links.length == 0 || pickerOpen) return;
 
     let direction = {
       ArrowUp: -1,
@@ -43,5 +63,15 @@ window.addEventListener("keydown", (e) => {
     links[keyboardSelection].click();
   } else if (e.key === "Backspace" && router.path != "/") {
     goBack();
+  } else if (e.key === "Escape") {
+    if (pickerOpen) {
+      hideThemePicker();
+    } else {
+      keyboardSelection = -1;
+      selector.classList.add("hidden");
+    }
+  } else if (e.key === "k" && e.ctrlKey) {
+    openThemePicker();
+    e.preventDefault();
   }
 });

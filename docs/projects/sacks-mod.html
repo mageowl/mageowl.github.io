@@ -8,6 +8,8 @@
 
   <body>
     <noscript>this page require javascript.</noscript>
+    <canvas id="shader" style="display: none"></canvas>
+
     <h1 id="path-back" data-sr-prop="back">projects/</h1>
     <div id="center">
       <h1 id="title" data-sr-prop="title">sacks mod</h1>
@@ -23,6 +25,10 @@
       select | <img src="/assets/delete.svg" width="26" height="26"></img>: go
       back</span>
     <div id="selector" class="hidden"></div>
+    <div id="theme-picker" class="hidden">
+      <span class="input"></span>
+      <span class="cursor">_</span>
+    </div>
     <script src="/js/page.js" type="module"></script>
   </body>
 </html>

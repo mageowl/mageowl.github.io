@@ -1,9 +1,0 @@
-[source]
-exclude = [".git", ".ignore"]
-
-[out]
-path = "docs/"
-lib_file = "js/router.js"
-
-[js]
-update_anchors = false

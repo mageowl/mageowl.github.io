@@ -5,11 +5,12 @@ import {
   setKeyboardSelection,
 } from "./keyboard.js";
 import { go, goBack } from "./util.js";
+import { pickerOpen } from "./themes.js";
 
 const selector = document.querySelector("div#selector");
 
 function updateSelection() {
-  if (inputDisabled) return;
+  if (inputDisabled || pickerOpen) return;
 
   const selected = document.querySelector("a:hover");
 
