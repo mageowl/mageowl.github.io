@@ -90,6 +90,7 @@ div#center {
 
         /*background: center / contain no-repeat;*/
         background: var(--fg);
+        mask-size: 2.7rem !important;
       }
 
       &.discord::before {
