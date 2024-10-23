@@ -4,7 +4,7 @@ import {
   keyboardSelection,
   setKeyboardSelection,
 } from "./keyboard.js";
-import { go, goBack } from "./util.js";
+import { go, goBack } from "./animation.js";
 import { pickerOpen } from "./themes.js";
 
 const selector = document.querySelector("div#selector");

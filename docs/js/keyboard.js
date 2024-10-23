@@ -1,4 +1,4 @@
-import { goBack } from "./util.js";
+import { goBack } from "./animation.js";
 import { links } from "./links.js";
 import {
   handleLetter,
