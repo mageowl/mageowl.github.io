@@ -1,7 +1,7 @@
 library_version = "0.1.13"
 
 [source]
-exclude = [".git", ".ignore", ".on_commit.fish"]
+exclude = [".git", ".ignore", ".on_commit.fish", "ts/"]
 
 [out]
 path = "docs/"

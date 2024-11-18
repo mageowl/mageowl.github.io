@@ -37,6 +37,12 @@
     }
 }
 
+@media screen and (max-height: 38rem) {
+    #theme-picker {
+        top: 0;
+    }
+}
+
 #shader {
     position: fixed;
     top: 0;
