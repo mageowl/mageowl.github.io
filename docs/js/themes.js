@@ -73,7 +73,7 @@ async function enableShaders() {
     window.addEventListener("resize", updateCanvasSize);
     updateCanvasSize();
     el.shaderCanvas.style.display = "block";
-    shaders = await import("./shaders");
+    shaders = await import("./shaders.js");
 }
 function disableShaders() {
     el.shaderCanvas.style.display = "none";

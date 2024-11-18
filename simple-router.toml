@@ -1,7 +1,7 @@
-library_version = "0.1.13"
+library_version = "0.1.14"
 
 [source]
-exclude = [".git", ".ignore", ".on_commit.fish", "ts/"]
+exclude = [".git", ".ignore", ".on_commit.fish"]
 
 [out]
 path = "docs/"
@@ -9,3 +9,7 @@ lib_file = "js/router.js"
 
 [js]
 update_anchors = false
+
+[scripts]
+prebuild = "tsc"
+postbuild = "rm -rf ./js/ ./docs/ts/"

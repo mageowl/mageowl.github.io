@@ -68,7 +68,7 @@ export function handleEnterTheme() {
     hideThemePicker();
 }
 
-let shaders: typeof import("./shaders");
+let shaders: typeof import("./shaders.js");
 async function setTheme(theme: Theme) {
     if (currentTheme?.classNames)
         currentTheme.classNames.forEach((n) =>
@@ -99,7 +99,7 @@ async function enableShaders() {
 
     el.shaderCanvas.style.display = "block";
 
-    shaders = await import("./shaders");
+    shaders = await import("./shaders.js");
 }
 
 function disableShaders() {
