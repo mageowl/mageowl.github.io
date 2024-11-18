@@ -1,53 +1,53 @@
 #theme-picker {
-  position: absolute;
-  top: calc(40vh - 7.6rem);
-  left: 0;
-  display: flex;
-  width: 100%;
-  height: 11.25rem;
+    position: absolute;
+    top: calc(20vh - 7.6rem);
+    left: 0;
+    display: flex;
+    width: 100%;
+    height: 11.25rem;
 
-  color: var(--bg);
-  font:
-    bold 7.6rem "Space Mono",
-    monospace;
+    color: var(--bg);
+    font:
+        bold 7.6rem "Space Mono",
+        monospace;
 
-  background-color: var(--fg);
+    background-color: var(--fg);
 
-  transition: transform 0.1s ease-out;
+    transition: transform 0.1s ease-out;
 
-  &::before {
-    content: ">";
-    display: inline-block;
-    width: calc(50vw - 360px);
-    margin-right: 40px;
+    &::before {
+        content: ">";
+        display: inline-block;
+        width: calc(50vw - 360px);
+        margin-right: 40px;
 
-    text-align: right;
-  }
+        text-align: right;
+    }
 
-  &.hidden {
-    transform: scaleY(0);
-  }
+    &.hidden {
+        transform: scaleY(0);
+    }
 
-  .input {
-    white-space: pre;
-  }
+    .input {
+        white-space: pre;
+    }
 
-  .cursor {
-    animation: blink 1s infinite;
-  }
+    .cursor {
+        animation: blink 1s infinite;
+    }
 }
 
 #shader {
-  position: fixed;
-  top: 0;
-  left: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 
 @keyframes blink {
-  from {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
+    from {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
 }
