@@ -1,24 +1,11 @@
 /* Space Grotesk fonts */
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Fira+Code:wght@300..700&display=swap");
 
+@import url(/css/themes.css);
 @import url(/css/mobile.css);
 @import url(/css/content.css);
 @import url(/css/selector.css);
-@import url(/css/themes.css);
-
-:root {
-    --fg: white;
-    --bg: black;
-}
-
-:root.light-mode {
-    --fg: black;
-    --bg: white;
-
-    span#help img {
-        filter: invert();
-    }
-}
+@import url(/css/theme-picker.css);
 
 body {
     margin: 0;

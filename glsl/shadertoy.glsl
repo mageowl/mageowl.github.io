@@ -1,10 +1,3 @@
-#ifdef GL_ES
-	precision highp float;
-#endif
-uniform float time;
-varying vec2 tPos;
-
-
 //
 // Description : Array and textureless GLSL 2D/3D/4D simplex 
 //               noise functions.
@@ -109,7 +102,6 @@ float snoise(vec3 v)
                                 dot(p2,x2), dot(p3,x3) ) );
   }
 
-// Actual shader (by mageowl)
 float layered_noise(vec3 v) {
     return (snoise(v * vec3(2)) + snoise(v + vec3(10)) + snoise(v * vec3(3)) + snoise(v * vec3(2)) + 2.0) / 6.0;
 }
@@ -155,14 +147,15 @@ vec3 hsl2rgb(vec3 hsl) {
 }
 
 vec3 color(float v) {
-    return 0.5 + 0.5 * cos(time / 2.0 + v * 2.0 + vec3(0, 2, 4));
+    return 0.5 + 0.5 * cos(iTime / 2.0 + v * 2.0 + vec3(0, 2, 4));
 }
 
-void main()
+void mainImage( out vec4 fragColor, in vec2 fragCoord )
 {
-    vec2 uv = tPos + snoise(vec3(tPos, time / -4.0)) * 0.2;
+    // Normalized pixel coordinates (from 0 to 1)
+    vec2 uv = fragCoord/iResolution.xy;
+    uv += snoise(vec3(uv, iTime / -4.0)) * 0.2;
     
     // Output to screen
-    gl_FragColor = vec4(color(layered_noise(vec3(uv, time / 4.0))), 1.0);
+    fragColor = vec4(color(layered_noise(vec3(uv, iTime / 4.0))), 1.0);
 }
-

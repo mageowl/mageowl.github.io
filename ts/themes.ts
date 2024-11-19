@@ -14,7 +14,7 @@ const THEMES: { [key: string]: Theme } = {
         classNames: ["light-mode"],
     },
     gay: {
-        classNames: ["pride", "gay"],
+        classNames: ["pride", "light-mode"],
         shader: {
             frag: "glsl/pride.glsl",
         },

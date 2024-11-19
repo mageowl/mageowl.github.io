@@ -114,13 +114,14 @@ export async function set(path: string) {
                 path,
             },
         ],
-        [],
+        ["time"],
         ["aVertexPosition", "aTexturePosition"],
     );
 
     if (!running) draw();
 }
 
+const timeStart = Date.now();
 function draw() {
     gl.viewport(0, 0, el.shaderCanvas.width, el.shaderCanvas.height);
     gl.clearColor(0, 0, 0, 1);
@@ -141,6 +142,14 @@ function draw() {
     gl.vertexAttribPointer(vertexPosition, 2, gl.FLOAT, false, 4 * 4, 0);
     gl.enableVertexAttribArray(texturePosition);
     gl.vertexAttribPointer(texturePosition, 2, gl.FLOAT, false, 4 * 4, 2 * 4);
+
+    gl.uniform1f(
+        assert(
+            program?.uniformsMap["time"],
+            "Could not get time uniform",
+        ) as number,
+        (Date.now() - timeStart) / 1000,
+    );
 
     gl.useProgram(assert(program?.program, "Shaders not initialized."));
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);

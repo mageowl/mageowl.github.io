@@ -40,10 +40,15 @@ window.addEventListener("keydown", (e) => {
         handleEnterTheme();
     } else if (pickerOpen && e.key === "Backspace") {
         handleBackspace();
+    } else if (e.key === "k" && e.ctrlKey) {
+        openThemePicker();
+        e.preventDefault();
     } else if (
         e.key === "ArrowUp" ||
         e.key === "ArrowDown" ||
-        e.key === "Tab"
+        e.key === "Tab" ||
+        e.key === "j" ||
+        e.key === "k"
     ) {
         e.preventDefault();
         if (links.length == 0 || pickerOpen) return;
@@ -52,6 +57,8 @@ window.addEventListener("keydown", (e) => {
             ArrowUp: -1,
             ArrowDown: 1,
             Tab: e.shiftKey ? -1 : 1,
+            j: 1,
+            k: -1,
         }[e.key];
 
         if (keyboardSelection === -1) {
@@ -78,8 +85,5 @@ window.addEventListener("keydown", (e) => {
             keyboardSelection = -1;
             el.selector.classList.add("hidden");
         }
-    } else if (e.key === "k" && e.ctrlKey) {
-        openThemePicker();
-        e.preventDefault();
     }
 });
