@@ -1,4 +1,4 @@
-library_version = "0.1.14"
+library_version = "0.2"
 
 [source]
 exclude = [".git", ".ignore", ".on_commit.fish"]

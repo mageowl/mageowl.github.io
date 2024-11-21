@@ -8,7 +8,7 @@ const THEMES = {
     gay: {
         classNames: ["pride", "light-mode"],
         shader: {
-            frag: "glsl/pride.glsl",
+            frag: "glsl/rainbow.glsl",
         },
     },
 };
@@ -58,7 +58,7 @@ async function setTheme(theme) {
     if (theme?.shader) {
         if (!shadersEnabled)
             await enableShaders();
-        shaders.set(theme.shader.frag);
+        shaders.set(theme.shader.frag, theme.shader.uniforms ?? {});
     }
     else if (currentTheme?.shader) {
         disableShaders();

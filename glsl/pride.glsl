@@ -2,6 +2,9 @@
 	precision highp float;
 #endif
 uniform float time;
+uniform vec3 color1;
+uniform vec3 color2;
+uniform vec3 color3;
 varying vec2 tPos;
 
 
@@ -160,7 +163,7 @@ vec3 color(float v) {
 
 void main()
 {
-    vec2 uv = tPos + snoise(vec3(tPos, time / -4.0)) * 0.2;
+    vec2 uv = tPos + snoise(vec3(tPos, time / -4.0)) * 0.2 - 0.1;
     
     // Output to screen
     gl_FragColor = vec4(color(layered_noise(vec3(uv, time / 4.0))), 1.0);

@@ -49,6 +49,7 @@ async function buildProgram(shaderInfo, uniforms, attributes) {
     return { program, uniformsMap, attributesMap };
 }
 let program;
+let staticUniforms = {};
 let running = false;
 const verticies = new Float32Array([
     -1, 1, 0, 0, 1, 1, 1, 0, -1, -1, 0, 1, 1, -1, 1, 1,
@@ -56,7 +57,7 @@ const verticies = new Float32Array([
 const vertexBuffer = gl.createBuffer();
 gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
 gl.bufferData(gl.ARRAY_BUFFER, verticies, gl.STATIC_DRAW);
-export async function set(path) {
+export async function set(path, uniforms) {
     if (program)
         gl.deleteProgram(program);
     program = await buildProgram([
@@ -68,7 +69,8 @@ export async function set(path) {
             type: ShaderType.FRAGMENT,
             path,
         },
-    ], ["time"], ["aVertexPosition", "aTexturePosition"]);
+    ], ["time", ...Object.keys(uniforms)], ["aVertexPosition", "aTexturePosition"]);
+    staticUniforms = uniforms;
     if (!running)
         draw();
 }

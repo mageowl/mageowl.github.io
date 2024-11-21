@@ -54,6 +54,6 @@ span#help {
 }
 
 ::selection {
-    color: var(--bg);
+    color: var(--fg-invert);
     background: var(--fg);
 }
