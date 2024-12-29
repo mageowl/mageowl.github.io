@@ -20,6 +20,9 @@ const THEMES: { [key: string]: Theme } = {
             frag: "glsl/rainbow.glsl",
         },
     },
+    alpha: {
+        classNames: ["transparent"],
+    },
 };
 
 let currentTheme = localStorage.theme

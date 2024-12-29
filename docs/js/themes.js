@@ -11,6 +11,9 @@ const THEMES = {
             frag: "glsl/rainbow.glsl",
         },
     },
+    alpha: {
+        classNames: ["transparent"],
+    },
 };
 let currentTheme = localStorage.theme
     ? THEMES[localStorage.theme]

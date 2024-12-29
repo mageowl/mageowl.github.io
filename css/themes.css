@@ -15,4 +15,7 @@
         --fg-invert: white;
         --bg: transparent;
     }
+    &.transparent {
+        --bg: transparent;
+    }
 }
