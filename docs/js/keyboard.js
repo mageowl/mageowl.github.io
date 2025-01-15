@@ -57,12 +57,12 @@ window.addEventListener("keydown", (e) => {
         setTimeout(() => el.selector.classList.remove("hidden"), 1);
         e.preventDefault();
     }
-    else if (e.key === " " || e.key === "Enter") {
+    else if (e.key === " " || e.key === "Enter" || e.key === "l") {
         if (links.length == 0 || keyboardSelection < 0)
             return;
         links[keyboardSelection].click();
     }
-    else if (e.key === "Backspace" && router.path != "/") {
+    else if ((e.key === "Backspace" || e.key === "h") && router.path != "/") {
         goBack();
     }
     else if (e.key === "Escape") {
