@@ -26,7 +26,7 @@ async function compileShader(
     path: string,
     type: ShaderType,
 ): Promise<WebGLShader> {
-    const code = await fetch("./" + path).then((res) => res.text());
+    const code = await fetch("/" + path).then((res) => res.text());
     const shader = assert(gl.createShader(type), "Could not create shader.");
 
     gl.shaderSource(shader, code);
@@ -34,7 +34,7 @@ async function compileShader(
 
     if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
         console.error(
-            `Error compiling ${type === gl.VERTEX_SHADER ? "vertex" : "fragment"} shader:`,
+            `Error compiling ${type === gl.VERTEX_SHADER ? "vertex" : "fragment"} shader: ${gl.getShaderInfoLog(shader)}`,
         );
         throw gl.getShaderInfoLog(shader);
     }
