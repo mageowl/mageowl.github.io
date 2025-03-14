@@ -92,8 +92,8 @@ async function buildProgram(
 }
 
 let program: Program | null;
-let staticUniforms = {};
 let running = false;
+let staticUniforms: { [name: string]: number[] } = {};
 const verticies = new Float32Array([
     -1, 1, 0, 0, 1, 1, 1, 0, -1, -1, 0, 1, 1, -1, 1, 1,
 ]);
@@ -105,7 +105,7 @@ export async function set(
     path: string,
     uniforms: { [name: string]: number[] },
 ) {
-    if (program) gl.deleteProgram(program);
+    if (program) gl.deleteProgram(program.program);
 
     program = await buildProgram(
         [
@@ -123,7 +123,17 @@ export async function set(
     );
     staticUniforms = uniforms;
 
-    if (!running) draw();
+    if (!running) {
+        running = true;
+        draw();
+    }
+}
+export function unset() {
+    if (!program) return;
+
+    gl.deleteProgram(program.program);
+    program = null;
+    running = false;
 }
 
 const timeStart = Date.now();
@@ -149,15 +159,23 @@ function draw() {
     gl.vertexAttribPointer(texturePosition, 2, gl.FLOAT, false, 4 * 4, 2 * 4);
 
     gl.uniform1f(
-        assert(
-            program?.uniformsMap["time"],
-            "Could not get time uniform",
-        ) as number,
+        assert(program?.uniformsMap["time"], "Could not get time uniform"),
         (Date.now() - timeStart) / 1000,
     );
+    for (let [name, data] of Object.entries(staticUniforms)) {
+        const uniform = assert(
+            program?.uniformsMap[name],
+            "Could not get custom uniform",
+        );
+        if (data.length === 4) {
+            gl.uniform4f(uniform, data[0], data[1], data[2], data[3]);
+        } else if (data.length === 3) {
+            gl.uniform3f(uniform, data[0], data[1], data[2]);
+        }
+    }
 
     gl.useProgram(assert(program?.program, "Shaders not initialized."));
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
 
-    requestAnimationFrame(draw);
+    if (running) requestAnimationFrame(draw);
 }

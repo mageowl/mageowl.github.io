@@ -5,11 +5,11 @@ import {
     setKeyboardSelection,
 } from "./keyboard.js";
 import { go, goBack } from "./animation.js";
-import { pickerOpen } from "./themes.js";
+import { cmdlineOpen } from "./cmdline.js";
 import { el } from "./elements.js";
 
 function updateSelection() {
-    if (inputDisabled || pickerOpen) return;
+    if (inputDisabled || cmdlineOpen) return;
 
     const selected = document.querySelector("a:hover");
 

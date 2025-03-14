@@ -25,7 +25,7 @@ div#center {
     }
 
     #links {
-        max-height: calc(80vh - 6rem - 80px);
+        max-height: calc(80vh - 6rem);
 
         overflow-y: auto;
         overflow-x: hidden;
@@ -116,7 +116,7 @@ div#center {
             display: block;
             width: 100%;
             height: 20px;
-            position: absolute;
+            position: fixed;
             bottom: calc(1.6rem + 20px);
 
             background: linear-gradient(#0000, var(--bg));
@@ -155,6 +155,7 @@ h1#path-back {
 
     text-align: right;
     opacity: 0.5;
+    white-space: nowrap;
 
     transition: opacity 0.2s;
 

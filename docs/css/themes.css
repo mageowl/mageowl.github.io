@@ -11,12 +11,12 @@
             filter: invert();
         }
     }
-    &.pride {
-        --fg-invert: white;
-        --bg: transparent;
-    }
     &.transparent {
         --fg-invert: black;
         --bg: transparent;
+
+        &.light-mode {
+            --fg-invert: white;
+        }
     }
 }

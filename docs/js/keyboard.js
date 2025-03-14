@@ -1,7 +1,7 @@
 import { goBack } from "./animation.js";
 import { el } from "./elements.js";
 import { links } from "./links.js";
-import { handleLetter, handleEnterTheme, handleBackspace, hideThemePicker, openThemePicker, pickerOpen, } from "./themes.js";
+import { handleLetter, handleEnterCommand, handleBackspace, closeCmdline, openCmdline, cmdlineOpen, } from "./cmdline.js";
 export let keyboardSelection = -1;
 export let inputDisabled = false;
 export function setKeyboardSelection(v) {
@@ -17,19 +17,20 @@ window.addEventListener("resize", updateSelection);
 window.addEventListener("keydown", (e) => {
     if (inputDisabled)
         e.preventDefault();
-    else if (pickerOpen &&
-        "abcdefghijklmnopqrstuvwxyz ".includes(e.key.toLowerCase()) &&
+    else if (cmdlineOpen &&
+        "abcdefghijklmnopqrstuvwxyz /-.".includes(e.key.toLowerCase()) &&
         !(e.ctrlKey || e.metaKey)) {
         handleLetter(e.key.toLowerCase());
+        e.preventDefault();
     }
-    else if (pickerOpen && e.key === "Enter") {
-        handleEnterTheme();
+    else if (cmdlineOpen && e.key === "Enter") {
+        handleEnterCommand();
     }
-    else if (pickerOpen && e.key === "Backspace") {
+    else if (cmdlineOpen && e.key === "Backspace") {
         handleBackspace();
     }
     else if (e.key === "k" && e.ctrlKey) {
-        openThemePicker();
+        openCmdline();
         e.preventDefault();
     }
     else if (e.key === "ArrowUp" ||
@@ -38,7 +39,7 @@ window.addEventListener("keydown", (e) => {
         e.key === "j" ||
         e.key === "k") {
         e.preventDefault();
-        if (links.length == 0 || pickerOpen)
+        if (links.length == 0 || cmdlineOpen)
             return;
         let direction = {
             ArrowUp: -1,
@@ -66,8 +67,8 @@ window.addEventListener("keydown", (e) => {
         goBack();
     }
     else if (e.key === "Escape") {
-        if (pickerOpen) {
-            hideThemePicker();
+        if (cmdlineOpen) {
+            closeCmdline();
         }
         else {
             keyboardSelection = -1;

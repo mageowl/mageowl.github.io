@@ -3,21 +3,81 @@ import { setKeyboardSelection } from "./keyboard.js";
 
 interface Theme {
     classNames?: string[];
+    pride?: boolean;
     shader?: {
         frag: string;
         uniforms?: { [name: string]: number[] };
     };
 }
 
-const THEMES: { [key: string]: Theme } = {
+function color(hex: number): [number, number, number] {
+    return [(hex >> 16) / 255, ((hex >> 8) & 0xff) / 255, (hex & 0xff) / 255];
+}
+
+export const THEMES: { [key: string]: Theme } = {
     dark: {},
     light: {
         classNames: ["light-mode"],
     },
-    gay: {
-        classNames: ["pride", "light-mode"],
+    pride: {
+        classNames: ["transparent", "light-mode"],
+        pride: true,
         shader: {
-            frag: "glsl/rainbow.glsl",
+            frag: "glsl/pride.glsl",
+        },
+    },
+    bisexual: {
+        classNames: ["transparent", "light-mode"],
+        pride: true,
+        shader: {
+            frag: "glsl/gradient_noclamp.glsl",
+            uniforms: {
+                color1: color(0xdb3ffd),
+                color2: color(0x7a09fa),
+                color3: color(0x3003d9),
+            },
+        },
+    },
+    trans: {
+        classNames: ["transparent", "light-mode"],
+        pride: true,
+        shader: {
+            frag: "glsl/gradient.glsl",
+            uniforms: {
+                color1: color(0x58c8f2),
+                color2: [1, 1, 1],
+                color3: color(0xeda4b2),
+            },
+        },
+    },
+    lesbian: {
+        classNames: ["transparent", "light-mode"],
+        pride: true,
+        shader: {
+            frag: "glsl/gradient.glsl",
+            uniforms: {
+                color1: color(0xd42c00),
+                color2: color(0xdc8fa2),
+                color3: color(0xa20161),
+            },
+        },
+    },
+    gay: {
+        classNames: ["transparent", "light-mode"],
+        pride: true,
+        shader: {
+            frag: "glsl/gradient.glsl",
+            uniforms: {
+                color1: color(0x21cfac),
+                color2: color(0x4391c2),
+                color3: color(0x4f47cd),
+            },
+        },
+    },
+    fire: {
+        classNames: ["transparent"],
+        shader: {
+            frag: "glsl/fire.glsl",
         },
     },
     alpha: {
@@ -25,55 +85,35 @@ const THEMES: { [key: string]: Theme } = {
     },
 };
 
-let currentTheme = localStorage.theme
-    ? THEMES[localStorage.theme]
-    : THEMES.dark;
+const isPrideMonth = new Date().getMonth() === 5;
+if (isPrideMonth) {
+    const message = "HAPPY PRIDE MONTH\u00a0\u00a0";
+    el.messageBarContent.innerText = message;
+    const msgWidth = el.messageBarContent.clientWidth;
 
-export let pickerOpen = false;
+    const screenWidth = Math.ceil(innerWidth / msgWidth);
+    let text = "";
+
+    for (let i = 0; i <= screenWidth; i++) {
+        text += message;
+    }
+
+    el.messageBar.classList.remove("hide");
+    el.messageBar.style.setProperty("--msg-width", msgWidth + "px");
+    el.messageBarContent.innerText = text;
+}
+
+let currentTheme = THEMES[localStorage.theme || "dark"];
+
 let shadersEnabled = false;
-let input = "";
 
 setTheme(currentTheme);
 
-export function openThemePicker() {
-    setKeyboardSelection(-1);
-    el.selector.classList.add("hidden");
-    el.content.classList.add("hidden");
-
-    el.themePicker.classList.remove("hidden");
-    pickerOpen = true;
-}
-
-export function hideThemePicker() {
-    el.content.classList.remove("hidden");
-    el.themePicker.classList.add("hidden");
-    el.themePickerInput.innerHTML = "";
-    pickerOpen = false;
-    input = "";
-}
-
-export function handleLetter(key: string) {
-    input += key;
-    el.themePickerInput.innerText = input;
-}
-
-export function handleBackspace() {
-    input = input.slice(0, -1);
-    el.themePickerInput.innerText = input;
-}
-
-export function handleEnterTheme() {
-    const theme = THEMES[input];
-    if (theme != null) {
-        setTheme(theme);
-        localStorage.theme = input;
-    }
-
-    hideThemePicker();
-}
-
 let shaders: typeof import("./shaders.js");
-async function setTheme(theme: Theme) {
+export async function setTheme(theme: Theme) {
+    if (isPrideMonth && !theme.pride)
+        theme = THEMES[localStorage.prideTheme || "pride"];
+
     if (currentTheme?.classNames)
         currentTheme.classNames.forEach((n) =>
             document.documentElement.classList.remove(n),
@@ -108,4 +148,5 @@ async function enableShaders() {
 
 function disableShaders() {
     el.shaderCanvas.style.display = "none";
+    shaders.unset();
 }

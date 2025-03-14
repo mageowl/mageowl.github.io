@@ -2,6 +2,9 @@
 	precision highp float;
 #endif
 uniform float time;
+uniform vec3 color1;
+uniform vec3 color2;
+uniform vec3 color3;
 varying vec2 tPos;
 
 
@@ -111,11 +114,15 @@ float snoise(vec3 v)
 
 // Actual shader (by mageowl)
 float layered_noise(vec3 v) {
-    return (snoise(v * vec3(2)) + snoise(v + vec3(10)) + snoise(v * vec3(3)) + snoise(v * vec3(2)) + 2.0) / 6.0;
+    return (snoise(v * vec3(2)) + snoise(v + vec3(3)) - snoise(v * vec3(3)) - snoise(v * vec3(2))) / 2.0 + 0.5;
 }
 
 vec3 color(float v) {
-    return 0.5 + 0.5 * cos(time / 2.0 + v * 2.0 + vec3(0, 2, 4));
+	if (v < 0.5) {
+		return color1 + (color2 - color1) * (v * 2.0);
+	} else {
+		return color2 + (color3 - color2) * (v * 2.0 - 1.0);
+	}
 }
 
 void main()

@@ -15,5 +15,7 @@ export const el = {
     themePicker: get("div#theme-picker"),
     themePickerInput: get("div#theme-picker .input"),
     content: get("div#center"),
+    messageBar: get("div#message-bar"),
+    messageBarContent: get("div#message-bar div"),
     shaderCanvas: get("canvas#shader") as HTMLCanvasElement,
 };

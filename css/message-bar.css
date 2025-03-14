@@ -1,0 +1,31 @@
+#message-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100vw;
+    height: 32px;
+
+    font: 1.2rem "Space Mono";
+    background: color-mix(in xyz, var(--fg) 20%, transparent);
+
+    div {
+        width: fit-content;
+        white-space: nowrap;
+
+        animation: scroll 2s linear infinite;
+    }
+
+    &.hide {
+        display: none;
+    }
+}
+
+@keyframes scroll {
+    from {
+        margin-left: 0;
+    }
+    to {
+        margin-left: calc(var(--msg-width) * -1);
+    }
+}

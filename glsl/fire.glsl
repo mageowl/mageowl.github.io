@@ -4,6 +4,9 @@
 uniform float time;
 varying vec2 tPos;
 
+const vec3 color1 = vec3(196.0, 43.0, 35.0) / 255.0;
+const vec3 color2 = vec3(255.0, 100.0, 23.0) / 255.0;
+const vec3 color3 = vec3(250.0, 214.0, 72.0) / 255.0;
 
 //
 // Description : Array and textureless GLSL 2D/3D/4D simplex 
@@ -111,18 +114,25 @@ float snoise(vec3 v)
 
 // Actual shader (by mageowl)
 float layered_noise(vec3 v) {
-    return (snoise(v * vec3(2)) + snoise(v + vec3(10)) + snoise(v * vec3(3)) + snoise(v * vec3(2)) + 2.0) / 6.0;
+    return (snoise(v * vec3(2)) + snoise(v + vec3(3)) - snoise(v * vec3(3)) - snoise(v * vec3(2))) / 2.0 + 0.5;
 }
 
 vec3 color(float v) {
-    return 0.5 + 0.5 * cos(time / 2.0 + v * 2.0 + vec3(0, 2, 4));
+	if (v < 0.5) {
+		return color1 + (color2 - color1) * (v * 2.0);
+	} else {
+		return color2 + (color3 - color2) * (v * 2.0 - 1.0);
+	}
 }
 
 void main()
 {
     vec2 uv = tPos + snoise(vec3(tPos, time / -4.0)) * 0.2 - 0.1;
+	uv.x *= 2.0;
+	uv.y /= 2.0;
     
+	float noise = layered_noise(vec3(uv, time / 1.5 + uv.y)) - (1.0 - uv.y) * 0.5;
     // Output to screen
-    gl_FragColor = vec4(color(layered_noise(vec3(uv, time / 4.0))), 1.0);
+    gl_FragColor = vec4(color(noise) * tPos.y, 1.0);
 }
 
