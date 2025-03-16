@@ -34,7 +34,7 @@ const COMMANDS = {
     help() {
         location.pathname = "cmdline/";
     },
-    settheme(input) {
+    theme(input) {
         const theme = THEMES[input];
         if (theme != null) {
             setTheme(theme);
@@ -45,5 +45,8 @@ const COMMANDS = {
     },
     cd(input) {
         location.pathname = input;
+    },
+    echo(input) {
+        alert(input);
     },
 };

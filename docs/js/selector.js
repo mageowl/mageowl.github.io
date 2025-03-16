@@ -6,10 +6,12 @@ import { el } from "./elements.js";
 function updateSelection() {
     if (inputDisabled || cmdlineOpen)
         return;
-    const selected = document.querySelector("a:hover");
+    document.querySelector("a.selected")?.classList.remove("selected");
+    const selected = document.querySelector("#links > a:hover");
     if (selected != null) {
         setKeyboardSelection(-1);
         el.selector.style.top = `${selected.getBoundingClientRect().top}px`;
+        selected.classList.add("selected");
         setTimeout(() => el.selector.classList.remove("hidden"), 1);
     }
     else {
@@ -33,6 +35,7 @@ updateLinks();
 window.addEventListener("navigate", updateLinks);
 window.addEventListener("mousemove", () => {
     if (keyboardSelection !== -1) {
+        document.querySelector("a.selected")?.classList.remove("selected");
         el.selector.classList.add("hidden");
     }
     setKeyboardSelection(-1);

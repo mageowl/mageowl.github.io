@@ -1,18 +1,16 @@
-/* Space Grotesk fonts */
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Fira+Code:wght@300..700&display=swap");
-
 @import url(/css/themes.css);
 @import url(/css/message-bar.css);
 @import url(/css/mobile.css);
 @import url(/css/content.css);
 @import url(/css/selector.css);
 @import url(/css/theme-picker.css);
+@import url(/css/fonts.css);
 
 body {
     margin: 0;
 
     font:
-        2.7rem "Space Grotesk",
+        2.7rem var(--font-body),
         sans-serif;
     color: var(--fg);
 
@@ -24,7 +22,7 @@ h1 {
     margin: 0 0 10px 0;
     cursor: default;
     font:
-        bold 7.6rem "Space Mono",
+        bold 7.6rem var(--font-header),
         monospace;
 }
 
@@ -38,7 +36,7 @@ span#help {
     width: 100%;
 
     font:
-        1.6rem "Space Mono",
+        1.6rem var(--font-body),
         sans-serif;
     font-variant-ligatures: no-common-ligatures;
     user-select: none;
@@ -48,9 +46,7 @@ span#help {
     background-color: var(--bg);
     padding-bottom: 10px;
 
-    img {
-        transform: translateY(5px);
-        opacity: 0.5;
+    span.icon {
     }
 }
 

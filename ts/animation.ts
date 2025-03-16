@@ -11,8 +11,6 @@ function sleep(ms: number) {
 }
 
 function animationStart(reverse = false) {
-    setInputDisabled(true);
-
     el.links.classList.add("hidden");
     el.selector.classList.add("hidden");
 
@@ -41,7 +39,42 @@ function animationEnd(reverse = false) {
     }
 
     el.links.classList.remove("hidden", reverse ? "left" : "right");
+}
 
+export async function go(to: string) {
+    const doAnim = !document.documentElement.classList.contains("no-anim");
+    if (doAnim) {
+        // start animation
+        setInputDisabled(true);
+        animationStart();
+
+        // wait for links to hide
+        await sleep(200);
+        el.links.classList.add("right");
+    }
+    // save time that animation will finish
+    const animDone = sleep(200);
+
+    // wait for page to change
+    await router.goto(to, {}, true);
+    [el.title, el.pathBack].forEach((e) => {
+        e.style.transform = "none";
+        e.classList.remove("moving", "transparent");
+    });
+
+    if (doAnim) {
+        setInputDisabled(false);
+
+        // wait for animation to finish
+        await animDone;
+
+        // fade in links
+        animationEnd();
+    } else {
+        el.selector.classList.add("hidden");
+    }
+
+    // update kbd selection
     if (keyboardSelection != -1) {
         if (links.length > 0) {
             setKeyboardSelection(0);
@@ -55,56 +88,54 @@ function animationEnd(reverse = false) {
     }
 }
 
-export async function go(to: string) {
-    // start animation
-    animationStart();
-
-    // wait for links to hide
-    await sleep(200);
-    el.links.classList.add("right");
-    // save time that animation will finish
-    const animDone = sleep(200);
-
-    // wait for page to change
-    await router.goto(to, {}, true);
-    [el.title, el.pathBack].forEach((e) => {
-        e.style.transform = "none";
-        e.classList.remove("moving", "transparent");
-    });
-    setInputDisabled(false);
-
-    // wait for animation to finish
-    await animDone;
-    //await sleep(200);
-
-    // fade in links
-    animationEnd();
-}
-
 export async function goBack() {
-    // start reverse animation
-    animationStart(true);
-    el.links.classList.add("left");
+    const doAnim = !document.documentElement.classList.contains("no-anim");
+    if (doAnim) {
+        // start reverse animation
+        animationStart(true);
+        el.links.classList.add("left");
+    }
 
     // save time that animation will finish
     const animDone = sleep(200);
 
     // wait for page to change
     await router.goto(
-        ("/" + router.path.split("/").slice(0, -1).join("/")).replace(
-            "//",
-            "/",
-        ),
+        (
+            "/" +
+            router.path
+                .split("/")
+                .filter((x) => x !== "")
+                .slice(0, -1)
+                .join("/")
+        ).replace("//", "/"),
     );
 
-    let titleOffset = el.title.getBoundingClientRect().width;
-    [el.title, el.pathBack].forEach((e) => {
-        e.classList.remove("hidden");
-        e.style.transform = `translateX(-${titleOffset}px)`;
-    });
+    if (doAnim) {
+        let titleOffset = el.title.getBoundingClientRect().width;
+        [el.title, el.pathBack].forEach((e) => {
+            e.classList.remove("hidden");
+            e.style.transform = `translateX(-${titleOffset}px)`;
+        });
 
-    // wait for animation to finish
-    setInputDisabled(false);
-    await animDone;
-    animationEnd(true);
+        // wait for animation to finish
+        setInputDisabled(false);
+        await animDone;
+        animationEnd(true);
+    } else {
+        el.selector.classList.add("hidden");
+    }
+
+    // update kbd selection
+    if (keyboardSelection != -1) {
+        if (links.length > 0) {
+            setKeyboardSelection(0);
+            el.selector.style.top = `${
+                links[keyboardSelection].getBoundingClientRect().top
+            }px`;
+            setTimeout(() => el.selector.classList.remove("hidden"), 1);
+        } else {
+            setKeyboardSelection(-2);
+        }
+    }
 }

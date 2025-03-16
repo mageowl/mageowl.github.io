@@ -32,7 +32,9 @@ window.addEventListener("keydown", (e) => {
     if (inputDisabled) e.preventDefault();
     else if (
         cmdlineOpen &&
-        "abcdefghijklmnopqrstuvwxyz /-.".includes(e.key.toLowerCase()) &&
+        "abcdefghijklmnopqrstuvwxyz /-.1234567890".includes(
+            e.key.toLowerCase(),
+        ) &&
         !(e.ctrlKey || e.metaKey)
     ) {
         handleLetter(e.key.toLowerCase());
@@ -41,7 +43,7 @@ window.addEventListener("keydown", (e) => {
         handleEnterCommand();
     } else if (cmdlineOpen && e.key === "Backspace") {
         handleBackspace();
-    } else if (e.key === "k" && e.ctrlKey) {
+    } else if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
         openCmdline();
         e.preventDefault();
     } else if (
@@ -62,6 +64,8 @@ window.addEventListener("keydown", (e) => {
             k: -1,
         }[e.key];
 
+        document.querySelector("a.selected")?.classList.remove("selected");
+
         if (keyboardSelection === -1) {
             setKeyboardSelection(direction === -1 ? links.length - 1 : 0);
         } else {
@@ -69,6 +73,7 @@ window.addEventListener("keydown", (e) => {
                 (keyboardSelection + direction + links.length) % links.length,
             );
         }
+        links[keyboardSelection].classList.add("selected");
 
         updateSelection();
         setTimeout(() => el.selector.classList.remove("hidden"), 1);
@@ -83,6 +88,7 @@ window.addEventListener("keydown", (e) => {
         if (cmdlineOpen) {
             closeCmdline();
         } else {
+            links[keyboardSelection]?.classList.remove("selected");
             keyboardSelection = -1;
             el.selector.classList.add("hidden");
         }

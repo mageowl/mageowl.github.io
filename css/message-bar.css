@@ -6,7 +6,7 @@
     width: 100vw;
     height: 32px;
 
-    font: 1.2rem "Space Mono";
+    font: 1.2rem var(--font-header);
     background: color-mix(in xyz, var(--fg) 20%, transparent);
 
     div {

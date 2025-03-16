@@ -2,7 +2,7 @@
     <head>
         <meta charset="UTF-8"></meta>
         <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-        <title data-sr-prop="title">settheme</title>
+        <title data-sr-prop="title">theme</title>
         <link href="/css/page.css" rel="stylesheet"></link>
     <script src="/js/router.js"></script></head>
 
@@ -13,9 +13,9 @@
         <div id="message-bar" class="hide"><div></div></div>
         <h1 id="path-back" data-sr-prop="back">mageowl/cmdline/</h1>
         <div id="center">
-            <h1 id="title" data-sr-prop="title">settheme</h1>
+            <h1 id="title" data-sr-prop="title">theme</h1>
             <div id="links" data-sr-prop="links">
-    <span><b>USAGE:</b> settheme [THEME] </span>
+    <span><b>USAGE:</b> theme [THEME] </span>
     <span>Change the theme of the website.</span>
     <span class="sep">—</span>
     <span>THEME: one of the options below</span>
@@ -29,15 +29,14 @@
         <li>lesbian*</li>
         <li>gay*</li>
         <li>fire*</li>
+        <li>retro</li>
     </ul>
     <span>*uses webgl. might not work on older browsers</span>
     <span>**transparent background. only works on firefox.</span>
 </div>
         </div>
-        <span id="help">↑ ↓: move |
-            <img src="/assets/space.svg" width="26" height="26"></img> or ↵: select
-            | <img src="/assets/delete.svg" width="26" height="26"></img>: go
-            back</span>
+        <span id="help">↑ ↓: move | <span class="icon space"></span> or ↵: select |
+            <span class="icon delete"></span>: go back</span>
         <div id="selector" class="hidden"></div>
         <div id="theme-picker" class="hidden">
             <span class="input"></span>

@@ -1,6 +1,6 @@
 div#center {
-    max-width: calc(50vw + 320px);
     margin: calc(20vh - 7.6rem) 0 0 calc(50vw - 320px);
+    padding-right: 20px;
 
     transition: opacity 0.2s;
 
@@ -88,7 +88,6 @@ div#center {
                 margin-right: 10px;
                 vertical-align: -8px;
 
-                /*background: center / contain no-repeat;*/
                 background: var(--fg);
                 mask-size: 2.7rem !important;
             }
@@ -123,7 +122,7 @@ div#center {
         }
     }
 
-    span,
+    span:not(.hotkey),
     em {
         display: block;
 

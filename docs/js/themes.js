@@ -63,10 +63,13 @@ export const THEMES = {
         },
     },
     fire: {
-        classNames: ["transparent"],
+        classNames: ["transparent", "fire"],
         shader: {
             frag: "glsl/fire.glsl",
         },
+    },
+    retro: {
+        classNames: ["retro", "no-anim"],
     },
     alpha: {
         classNames: ["transparent"],

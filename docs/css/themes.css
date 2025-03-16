@@ -2,6 +2,8 @@
     --fg: white;
     --bg: black;
     --fg-invert: var(--bg);
+    --font-header: "Space Mono";
+    --font-body: "Space Grotesk";
 
     &.light-mode {
         --fg: black;
@@ -18,5 +20,61 @@
         &.light-mode {
             --fg-invert: white;
         }
+    }
+    &.fire {
+        --font-header: "UnifrakturMaguntia";
+        --font-body: "Homenaje";
+    }
+    &.retro {
+        --fg: #89ff52;
+        --bg: #0a1f00;
+        --font-header: "Courier Prime";
+        --font-body: "Courier Prime";
+
+        #selector {
+            mix-blend-mode: normal;
+            background-color: var(--fg);
+            z-index: -100;
+
+            &::after {
+                content: "->";
+                width: 64px;
+
+                color: var(--bg);
+                background: none;
+            }
+        }
+
+        #links > a.selected {
+            color: var(--bg);
+
+            &.icon::before {
+                background-color: var(--bg) !important;
+            }
+        }
+
+        body::after {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            pointer-events: none;
+            background: linear-gradient(transparent, #498e29, transparent) 0 0 /
+                8px 8px;
+            opacity: 0.1;
+        }
+    }
+    &.no-anim {
+        * {
+            transition: none !important;
+        }
+    }
+
+    &:is(.fire, .retro) #selector {
+        margin-top: 0;
     }
 }
