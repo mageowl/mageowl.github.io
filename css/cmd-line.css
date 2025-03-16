@@ -1,4 +1,4 @@
-#theme-picker {
+#cmd-line {
     position: absolute;
     top: calc(20vh - 7.6rem);
     left: 0;
@@ -43,7 +43,7 @@
 }
 
 @media screen and (max-height: 38rem) {
-    #theme-picker {
+    #cmd-line {
         top: 0;
     }
 }

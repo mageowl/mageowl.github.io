@@ -1,10 +1,10 @@
 import { links } from "./links.js";
 import { inputDisabled, keyboardSelection, setKeyboardSelection, } from "./keyboard.js";
 import { go, goBack } from "./animation.js";
-import { cmdlineOpen } from "./cmdline.js";
+import { cmdLineOpen } from "./cmd-line.js";
 import { el } from "./elements.js";
 function updateSelection() {
-    if (inputDisabled || cmdlineOpen)
+    if (inputDisabled || cmdLineOpen)
         return;
     document.querySelector("a.selected")?.classList.remove("selected");
     const selected = document.querySelector("#links > a:hover");

@@ -7,8 +7,8 @@ import {
     handleBackspace,
     closeCmdline,
     openCmdline,
-    cmdlineOpen,
-} from "./cmdline.js";
+    cmdLineOpen,
+} from "./cmd-line.js";
 
 export let keyboardSelection = -1;
 export let inputDisabled = false;
@@ -31,7 +31,7 @@ window.addEventListener("resize", updateSelection);
 window.addEventListener("keydown", (e) => {
     if (inputDisabled) e.preventDefault();
     else if (
-        cmdlineOpen &&
+        cmdLineOpen &&
         "abcdefghijklmnopqrstuvwxyz /-.1234567890".includes(
             e.key.toLowerCase(),
         ) &&
@@ -39,9 +39,9 @@ window.addEventListener("keydown", (e) => {
     ) {
         handleLetter(e.key.toLowerCase());
         e.preventDefault();
-    } else if (cmdlineOpen && e.key === "Enter") {
+    } else if (cmdLineOpen && e.key === "Enter") {
         handleEnterCommand();
-    } else if (cmdlineOpen && e.key === "Backspace") {
+    } else if (cmdLineOpen && e.key === "Backspace") {
         handleBackspace();
     } else if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
         openCmdline();
@@ -54,7 +54,7 @@ window.addEventListener("keydown", (e) => {
         e.key === "k"
     ) {
         e.preventDefault();
-        if (links.length == 0 || cmdlineOpen) return;
+        if (links.length == 0 || cmdLineOpen) return;
 
         let direction = {
             ArrowUp: -1,
@@ -85,7 +85,7 @@ window.addEventListener("keydown", (e) => {
     } else if ((e.key === "Backspace" || e.key === "h") && router.path != "/") {
         goBack();
     } else if (e.key === "Escape") {
-        if (cmdlineOpen) {
+        if (cmdLineOpen) {
             closeCmdline();
         } else {
             links[keyboardSelection]?.classList.remove("selected");

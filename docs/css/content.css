@@ -86,7 +86,7 @@ div#center {
                 width: 2.7rem;
                 height: 2.7rem;
                 margin-right: 10px;
-                vertical-align: -8px;
+                vertical-align: middle;
 
                 background: var(--fg);
                 mask-size: 2.7rem !important;

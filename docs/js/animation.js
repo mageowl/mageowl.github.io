@@ -58,10 +58,11 @@ export async function go(to) {
         el.selector.classList.add("hidden");
     }
     // update kbd selection
-    if (keyboardSelection != -1) {
+    if (keyboardSelection !== -1) {
         if (links.length > 0) {
             setKeyboardSelection(0);
-            el.selector.style.top = `${links[keyboardSelection].getBoundingClientRect().top}px`;
+            el.selector.style.top = `${links[0].getBoundingClientRect().top}px`;
+            links[0].classList.add("selected");
             setTimeout(() => el.selector.classList.remove("hidden"), 1);
         }
         else {
@@ -103,7 +104,8 @@ export async function goBack() {
     if (keyboardSelection != -1) {
         if (links.length > 0) {
             setKeyboardSelection(0);
-            el.selector.style.top = `${links[keyboardSelection].getBoundingClientRect().top}px`;
+            el.selector.style.top = `${links[0].getBoundingClientRect().top}px`;
+            links[0].classList.add("selected");
             setTimeout(() => el.selector.classList.remove("hidden"), 1);
         }
         else {

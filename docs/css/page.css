@@ -3,7 +3,7 @@
 @import url(/css/mobile.css);
 @import url(/css/content.css);
 @import url(/css/selector.css);
-@import url(/css/theme-picker.css);
+@import url(/css/cmd-line.css);
 @import url(/css/fonts.css);
 
 body {
@@ -47,6 +47,21 @@ span#help {
     padding-bottom: 10px;
 
     span.icon {
+        display: inline-block;
+        width: 26px;
+        height: 26px;
+        vertical-align: middle;
+
+        background: var(--fg);
+        opacity: 0.5;
+        mask-size: 26px;
+
+        &.space {
+            mask-image: url(/assets/space.svg);
+        }
+        &.delete {
+            mask-image: url(/assets/delete.svg);
+        }
     }
 }
 
