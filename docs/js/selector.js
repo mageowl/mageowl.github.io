@@ -1,7 +1,7 @@
 import { links } from "./links.js";
 import { inputDisabled, keyboardSelection, setKeyboardSelection, } from "./keyboard.js";
 import { go, goBack } from "./animation.js";
-import { cmdLineOpen } from "./cmd-line.js";
+import { cmdLineOpen } from "./cmdLine.js";
 import { el } from "./elements.js";
 function updateSelection() {
     if (inputDisabled || cmdLineOpen)

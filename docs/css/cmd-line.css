@@ -38,7 +38,15 @@
     }
 
     .cursor {
+        display: inline-block;
+        width: 0;
+
         animation: blink 1s infinite;
+    }
+
+    .autocomplete {
+        opacity: 0.5;
+        margin-right: 128px;
     }
 }
 

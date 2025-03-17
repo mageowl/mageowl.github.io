@@ -45,7 +45,7 @@
             }
         }
 
-        #links > a.selected {
+        #links a.selected {
             color: var(--bg);
 
             &.icon::before {

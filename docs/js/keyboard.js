@@ -1,7 +1,7 @@
 import { goBack } from "./animation.js";
 import { el } from "./elements.js";
 import { links } from "./links.js";
-import { handleLetter, handleEnterCommand, handleBackspace, closeCmdline, openCmdline, cmdLineOpen, } from "./cmd-line.js";
+import { handleLetter, handleEnterCommand, handleBackspace, closeCmdline, openCmdline, cmdLineOpen, } from "./cmdLine.js";
 export let keyboardSelection = -1;
 export let inputDisabled = false;
 export function setKeyboardSelection(v) {

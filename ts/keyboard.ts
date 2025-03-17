@@ -8,7 +8,7 @@ import {
     closeCmdline,
     openCmdline,
     cmdLineOpen,
-} from "./cmd-line.js";
+} from "./cmdLine.js";
 
 export let keyboardSelection = -1;
 export let inputDisabled = false;

@@ -108,18 +108,17 @@ div#center {
                 mask: url(/assets/itch.svg);
             }
         }
+    }
+    &::after {
+        content: " ";
 
-        &::after {
-            content: " ";
+        display: block;
+        width: 100%;
+        height: 20px;
+        position: fixed;
+        bottom: calc(1.6rem + 20px);
 
-            display: block;
-            width: 100%;
-            height: 20px;
-            position: fixed;
-            bottom: calc(1.6rem + 20px);
-
-            background: linear-gradient(#0000, var(--bg));
-        }
+        background: linear-gradient(transparent, var(--bg));
     }
 
     span:not(.hotkey),
