@@ -1,0 +1,2 @@
+#!/usr/bin/env fish
+nix-shell -p typescript --run "simple-router $argv[1]"
