@@ -38,6 +38,18 @@ export const THEMES = {
             },
         },
     },
+    enby: {
+        classNames: ["transparent", "light-mode"],
+        pride: true,
+        shader: {
+            frag: "glsl/gradient_noclamp.glsl",
+            uniforms: {
+                color1: color(0xF6B94B),
+                color2: color(0x9B59D0),
+                color3: color(0x3C234D),
+            },
+        },
+    },
     lesbian: {
         classNames: ["transparent", "light-mode"],
         pride: true,
@@ -94,12 +106,15 @@ let shadersEnabled = false;
 setTheme(currentTheme);
 let shaders;
 export async function setTheme(theme) {
-    if (isPrideMonth && !theme.pride)
+    if (isPrideMonth && !theme.pride) {
         theme = THEMES[localStorage.prideTheme || "pride"];
-    if (currentTheme?.classNames)
+    }
+    if (currentTheme?.classNames) {
         currentTheme.classNames.forEach((n) => document.documentElement.classList.remove(n));
-    if (theme?.classNames)
+    }
+    if (theme?.classNames) {
         theme.classNames.forEach((n) => document.documentElement.classList.add(n));
+    }
     if (theme?.shader) {
         if (!shadersEnabled)
             await enableShaders();
