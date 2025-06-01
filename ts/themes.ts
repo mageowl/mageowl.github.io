@@ -102,18 +102,20 @@ export const THEMES: { [key: string]: Theme } = {
 
 const isPrideMonth = new Date().getMonth() === 5;
 if (isPrideMonth) {
+  el.messageBar.classList.remove("hide");
+
   const message = "HAPPY PRIDE MONTH\u00a0\u00a0";
   el.messageBarContent.innerText = message;
   const msgWidth = el.messageBarContent.clientWidth;
 
   const screenWidth = Math.ceil(innerWidth / msgWidth);
+  console.log(screenWidth);
   let text = "";
 
   for (let i = 0; i <= screenWidth; i++) {
     text += message;
   }
 
-  el.messageBar.classList.remove("hide");
   el.messageBar.style.setProperty("--msg-width", msgWidth + "px");
   el.messageBarContent.innerText = text;
 }

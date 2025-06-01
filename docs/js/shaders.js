@@ -52,7 +52,22 @@ let program;
 let running = false;
 let staticUniforms = {};
 const verticies = new Float32Array([
-    -1, 1, 0, 0, 1, 1, 1, 0, -1, -1, 0, 1, 1, -1, 1, 1,
+    -1,
+    1,
+    0,
+    0,
+    1,
+    1,
+    1,
+    0,
+    -1,
+    -1,
+    0,
+    1,
+    1,
+    -1,
+    1,
+    1,
 ]);
 const vertexBuffer = gl.createBuffer();
 gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
@@ -96,7 +111,7 @@ function draw() {
     gl.enableVertexAttribArray(texturePosition);
     gl.vertexAttribPointer(texturePosition, 2, gl.FLOAT, false, 4 * 4, 2 * 4);
     gl.uniform1f(assert(program?.uniformsMap["time"], "Could not get time uniform"), (Date.now() - timeStart) / 1000);
-    for (let [name, data] of Object.entries(staticUniforms)) {
+    for (const [name, data] of Object.entries(staticUniforms)) {
         const uniform = assert(program?.uniformsMap[name], "Could not get custom uniform");
         if (data.length === 4) {
             gl.uniform4f(uniform, data[0], data[1], data[2], data[3]);
