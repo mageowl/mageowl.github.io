@@ -1,31 +1,35 @@
 #message-bar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    width: 100vw;
-    height: 32px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100vw;
+  height: 32px;
 
-    font: 1.2rem var(--font-header);
-    background: color-mix(in xyz, var(--fg) 20%, transparent);
+  font: 1.2rem var(--font-header);
+  background: color-mix(in xyz, var(--fg) 20%, transparent);
 
-    div {
-        width: fit-content;
-        white-space: nowrap;
+  div {
+    width: fit-content;
+    white-space: nowrap;
 
-        animation: scroll 2s linear infinite;
-    }
+    animation: scroll 2s linear infinite;
+  }
 
-    &.hide {
-        display: none;
-    }
+  transition: margin-top 800ms cubic-bezier(.4, .83, .48, 1.24);
+
+  &.hide {
+    margin-top: -32px;
+    transition: none;
+  }
 }
 
 @keyframes scroll {
-    from {
-        margin-left: 0;
-    }
-    to {
-        margin-left: calc(var(--msg-width) * -1);
-    }
+  from {
+    margin-left: 0;
+  }
+
+  to {
+    margin-left: calc(var(--msg-width) * -1);
+  }
 }

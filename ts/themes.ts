@@ -100,8 +100,7 @@ export const THEMES: { [key: string]: Theme } = {
   },
 };
 
-const isPrideMonth = new Date().getMonth() === 5;
-if (isPrideMonth) {
+function resizeMessageBar() {
   el.messageBar.classList.remove("hide");
 
   const message = "HAPPY PRIDE MONTH\u00a0\u00a0";
@@ -109,15 +108,16 @@ if (isPrideMonth) {
   const msgWidth = el.messageBarContent.clientWidth;
 
   const screenWidth = Math.ceil(innerWidth / msgWidth);
-  console.log(screenWidth);
-  let text = "";
-
-  for (let i = 0; i <= screenWidth; i++) {
-    text += message;
-  }
-
   el.messageBar.style.setProperty("--msg-width", msgWidth + "px");
-  el.messageBarContent.innerText = text;
+  el.messageBarContent.innerText = message.repeat(screenWidth);
+}
+
+const isPrideMonth = new Date().getMonth() === 5;
+if (isPrideMonth) {
+  setTimeout(() => {
+    resizeMessageBar();
+    addEventListener("resize", resizeMessageBar);
+  }, 200);
 }
 
 let currentTheme = THEMES[localStorage.theme || "dark"];
