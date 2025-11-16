@@ -1,7 +1,7 @@
 library_version = "0.2"
 
 [source]
-exclude = [".git", ".ignore", ".on_commit.fish", "run", "ts"]
+exclude = [".git", ".ignore", ".on_commit.fish", "run"]
 
 [out]
 path = "docs/"
@@ -12,4 +12,5 @@ update_anchors = false
 
 [scripts]
 prebuild = "deno bundle --outdir js ./ts/**.ts"
-postbuild = "rm -rf js/"
+# ts cant be excluded cuz then it gets excluded from `dev watch`.
+postbuild = "rm -rf js/ docs/ts"

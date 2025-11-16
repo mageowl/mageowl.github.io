@@ -1,4 +1,4 @@
-import { el } from "./elements.ts";
+import { el } from "./consts.ts";
 
 const isMobile = innerWidth <= 400;
 

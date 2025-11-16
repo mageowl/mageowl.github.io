@@ -1,8 +1,10 @@
-import { el } from "./elements.ts";
+import { el, isPrideMonth } from "./consts.ts";
+import { setMessage } from "./messageBar.ts";
 
 interface Theme {
   classNames?: string[];
   pride?: boolean;
+  message?: string;
   shader?: {
     frag: string;
     uniforms?: { [name: string]: number[] };
@@ -19,15 +21,17 @@ export const THEMES: { [key: string]: Theme } = {
     classNames: ["light-mode"],
   },
   pride: {
-    classNames: ["transparent", "light-mode"],
+    classNames: ["transparent", "light-mode", "no-invert"],
     pride: true,
+    message: "HAPPY PRIDE",
     shader: {
       frag: "glsl/pride.glsl",
     },
   },
   bisexual: {
-    classNames: ["transparent", "light-mode"],
+    classNames: ["transparent", "light-mode", "no-invert"],
     pride: true,
+    message: "GIRLS AND BOYS AND ENBIES AND\u00a0",
     shader: {
       frag: "glsl/gradient_noclamp.glsl",
       uniforms: {
@@ -38,8 +42,9 @@ export const THEMES: { [key: string]: Theme } = {
     },
   },
   trans: {
-    classNames: ["transparent", "light-mode"],
+    classNames: ["transparent", "light-mode", "no-invert"],
     pride: true,
+    message: "TRANS PEOPLE ARE PEOPLE",
     shader: {
       frag: "glsl/gradient.glsl",
       uniforms: {
@@ -49,9 +54,10 @@ export const THEMES: { [key: string]: Theme } = {
       },
     },
   },
-  enby: {
-    classNames: ["transparent", "light-mode"],
+  nonbinary: {
+    classNames: ["transparent", "no-invert"],
     pride: true,
+    message: "GENDER IS A CONSTRUCT",
     shader: {
       frag: "glsl/gradient_noclamp.glsl",
       uniforms: {
@@ -85,6 +91,19 @@ export const THEMES: { [key: string]: Theme } = {
       },
     },
   },
+  asexual: {
+    classNames: ["transparent", "light-mode"],
+    pride: true,
+    message: "GARLIC BREAD",
+    shader: {
+      frag: "glsl/gradient.glsl",
+      uniforms: {
+        color1: color(0x666666),
+        color2: color(0xffffff),
+        color3: color(0x840884),
+      },
+    },
+  },
   fire: {
     classNames: ["transparent", "fire"],
     shader: {
@@ -99,36 +118,27 @@ export const THEMES: { [key: string]: Theme } = {
   },
 };
 
-function resizeMessageBar() {
-  el.messageBar.classList.remove("hide");
+const ALIASES: { [alias: string]: string } = {
+  default: "dark",
+  bi: "bisexual",
+  transgender: "trans",
+  enby: "nonbinary",
+  wlw: "lesbian",
+  mlm: "gay",
+  ase: "asexual",
+};
 
-  const message = "HAPPY PRIDE MONTH\u00a0\u00a0";
-  el.messageBarContent.innerText = message;
-  const msgWidth = el.messageBarContent.clientWidth;
+export const getTheme = (name: string) => THEMES[name] ?? THEMES[ALIASES[name]];
 
-  const screenWidth = Math.ceil(innerWidth / msgWidth);
-  el.messageBar.style.setProperty("--msg-width", msgWidth + "px");
-  el.messageBarContent.innerText = message.repeat(screenWidth);
-}
-
-const isPrideMonth = new Date().getMonth() === 5;
-if (isPrideMonth) {
-  setTimeout(() => {
-    resizeMessageBar();
-    addEventListener("resize", resizeMessageBar);
-  }, 200);
-}
-
-let currentTheme = THEMES[localStorage.theme || "dark"];
-
+let currentTheme = getTheme(localStorage.theme || "dark");
 let shadersLoaded = false;
 
 setTheme(currentTheme);
 
-let shaders: typeof import("./shaders.ts");
+let shaders: Promise<typeof import("./shaders.ts")>;
 export async function setTheme(theme: Theme) {
   if (isPrideMonth && !theme.pride) {
-    theme = THEMES[localStorage.prideTheme || "pride"];
+    theme = getTheme(localStorage.prideTheme || "pride");
   }
 
   if (currentTheme?.classNames) {
@@ -140,16 +150,18 @@ export async function setTheme(theme: Theme) {
     theme.classNames.forEach((n) => document.documentElement.classList.add(n));
   }
   if (theme?.shader) {
-    if (!shadersLoaded) await enableShaders();
-    shaders.set(theme.shader.frag, theme.shader.uniforms ?? {});
+    if (!shadersLoaded) enableShaders();
+    (await shaders).set(theme.shader.frag, theme.shader.uniforms ?? {});
   } else if (currentTheme?.shader) {
-    disableShaders();
+    await disableShaders();
   }
+
+  setMessage(theme.message ?? "");
 
   currentTheme = theme;
 }
 
-async function enableShaders() {
+function enableShaders() {
   function updateCanvasSize() {
     el.shaderCanvas.width = innerWidth;
     el.shaderCanvas.height = innerHeight;
@@ -160,11 +172,14 @@ async function enableShaders() {
 
   el.shaderCanvas.style.display = "block";
 
-  shaders = await import("./shaders.ts");
+  shaders = import("./shaders.ts");
   shadersLoaded = true;
 }
 
-function disableShaders() {
+async function disableShaders() {
+  if (!shadersLoaded) return;
   el.shaderCanvas.style.display = "none";
-  shaders.unset();
+  (await shaders).unset();
+  shadersLoaded = false;
+  console.log("shaders disabled");
 }

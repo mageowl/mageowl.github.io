@@ -1,4 +1,4 @@
-// ts/elements.ts
+// ts/consts.ts
 function get(query) {
   const e = document.querySelector(query);
   if (e != null) {
@@ -20,6 +20,7 @@ var el = {
   messageBarContent: get("div#message-bar div"),
   shaderCanvas: get("canvas#shader")
 };
+var isPrideMonth = (/* @__PURE__ */ new Date()).getMonth() === 5;
 
 // ts/mobile.ts
 var isMobile = innerWidth <= 400;

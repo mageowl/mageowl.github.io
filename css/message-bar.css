@@ -13,7 +13,7 @@
     width: fit-content;
     white-space: nowrap;
 
-    animation: scroll 2s linear infinite;
+    animation: scroll calc(var(--msg-width) * .01s) linear infinite;
   }
 
   transition: margin-top 800ms cubic-bezier(.4, .83, .48, 1.24);
@@ -30,6 +30,6 @@
   }
 
   to {
-    margin-left: calc(var(--msg-width) * -1);
+    margin-left: calc(var(--msg-width) * -1px);
   }
 }

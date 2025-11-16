@@ -6,7 +6,7 @@ import {
 } from "./keyboard.ts";
 import { go, goBack } from "./animation.ts";
 import { cmdLineOpen } from "./cmdLine.ts";
-import { el } from "./elements.ts";
+import { el } from "./consts.ts";
 
 function updateSelection() {
   if (inputDisabled || cmdLineOpen) return;

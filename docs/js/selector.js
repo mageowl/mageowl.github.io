@@ -8,7 +8,7 @@ var __export = (target, all) => {
     __defProp(target, name, { get: all[name], enumerable: true });
 };
 
-// ts/elements.ts
+// ts/consts.ts
 function get(query) {
   const e = document.querySelector(query);
   if (e != null) {
@@ -17,9 +17,9 @@ function get(query) {
     throw `could not get element ${query}`;
   }
 }
-var el;
-var init_elements = __esm({
-  "ts/elements.ts"() {
+var el, isPrideMonth;
+var init_consts = __esm({
+  "ts/consts.ts"() {
     el = {
       links: get("#links"),
       selector: get("#selector"),
@@ -33,6 +33,7 @@ var init_elements = __esm({
       messageBarContent: get("div#message-bar div"),
       shaderCanvas: get("canvas#shader")
     };
+    isPrideMonth = (/* @__PURE__ */ new Date()).getMonth() === 5;
   }
 });
 
@@ -143,7 +144,7 @@ function draw() {
 var gl, ShaderType, shaderCache, program, running, staticUniforms, verticies, vertexBuffer, timeStart;
 var init_shaders = __esm({
   "ts/shaders.ts"() {
-    init_elements();
+    init_consts();
     gl = assert(el.shaderCanvas.getContext("webgl"), "Could not initialize WebGL.");
     ShaderType = /* @__PURE__ */ function(ShaderType2) {
       ShaderType2[ShaderType2["VERTEX"] = gl.VERTEX_SHADER] = "VERTEX";
@@ -191,7 +192,7 @@ document.querySelectorAll("span.hotkey").forEach((e) => {
 });
 
 // ts/animation.ts
-init_elements();
+init_consts();
 function sleep(ms) {
   return new Promise((res) => setTimeout(res, ms));
 }
@@ -296,13 +297,54 @@ async function goBack() {
 }
 
 // ts/keyboard.ts
-init_elements();
+init_consts();
 
 // ts/cmdLine.ts
-init_elements();
+init_consts();
+
+// ts/messageBar.ts
+init_consts();
+var visible = false;
+var message = "";
+function resizeMessageBar() {
+  if (!visible) {
+    removeEventListener("resize", resizeMessageBar);
+    return;
+  }
+  el.messageBar.classList.remove("hide");
+  const spacedMessage = message.endsWith("\xA0") ? message : message + "\xA0\xA0";
+  el.messageBarContent.innerText = spacedMessage;
+  const msgWidth = el.messageBarContent.clientWidth;
+  const screenWidth = Math.ceil(innerWidth / msgWidth) + 1;
+  el.messageBar.style.setProperty("--msg-width", msgWidth.toString());
+  el.messageBarContent.innerText = spacedMessage.repeat(screenWidth);
+}
+function showMessageBar() {
+  visible = true;
+  setTimeout(() => {
+    resizeMessageBar();
+    addEventListener("resize", resizeMessageBar);
+  }, 200);
+}
+function hideMessageBar() {
+  el.messageBar.classList.add("hide");
+}
+function setMessage(value) {
+  if (isPrideMonth) return;
+  message = value;
+  if (message !== "") {
+    if (!visible) showMessageBar();
+    else resizeMessageBar();
+  } else if (message === "" && visible) {
+    hideMessageBar();
+  }
+}
+if (isPrideMonth) {
+  setMessage("HAPPY PRIDE MONTH!!");
+}
 
 // ts/themes.ts
-init_elements();
+init_consts();
 function color(hex) {
   return [
     (hex >> 16) / 255,
@@ -320,9 +362,11 @@ var THEMES = {
   pride: {
     classNames: [
       "transparent",
-      "light-mode"
+      "light-mode",
+      "no-invert"
     ],
     pride: true,
+    message: "HAPPY PRIDE",
     shader: {
       frag: "glsl/pride.glsl"
     }
@@ -330,9 +374,11 @@ var THEMES = {
   bisexual: {
     classNames: [
       "transparent",
-      "light-mode"
+      "light-mode",
+      "no-invert"
     ],
     pride: true,
+    message: "GIRLS AND BOYS AND ENBIES AND\xA0",
     shader: {
       frag: "glsl/gradient_noclamp.glsl",
       uniforms: {
@@ -345,9 +391,11 @@ var THEMES = {
   trans: {
     classNames: [
       "transparent",
-      "light-mode"
+      "light-mode",
+      "no-invert"
     ],
     pride: true,
+    message: "TRANS PEOPLE ARE PEOPLE",
     shader: {
       frag: "glsl/gradient.glsl",
       uniforms: {
@@ -361,12 +409,13 @@ var THEMES = {
       }
     }
   },
-  enby: {
+  nonbinary: {
     classNames: [
       "transparent",
-      "light-mode"
+      "no-invert"
     ],
     pride: true,
+    message: "GENDER IS A CONSTRUCT",
     shader: {
       frag: "glsl/gradient_noclamp.glsl",
       uniforms: {
@@ -406,6 +455,22 @@ var THEMES = {
       }
     }
   },
+  asexual: {
+    classNames: [
+      "transparent",
+      "light-mode"
+    ],
+    pride: true,
+    message: "GARLIC BREAD",
+    shader: {
+      frag: "glsl/gradient.glsl",
+      uniforms: {
+        color1: color(6710886),
+        color2: color(16777215),
+        color3: color(8652932)
+      }
+    }
+  },
   fire: {
     classNames: [
       "transparent",
@@ -427,29 +492,23 @@ var THEMES = {
     ]
   }
 };
-function resizeMessageBar() {
-  el.messageBar.classList.remove("hide");
-  const message = "HAPPY PRIDE MONTH\xA0\xA0";
-  el.messageBarContent.innerText = message;
-  const msgWidth = el.messageBarContent.clientWidth;
-  const screenWidth = Math.ceil(innerWidth / msgWidth);
-  el.messageBar.style.setProperty("--msg-width", msgWidth + "px");
-  el.messageBarContent.innerText = message.repeat(screenWidth);
-}
-var isPrideMonth = (/* @__PURE__ */ new Date()).getMonth() === 5;
-if (isPrideMonth) {
-  setTimeout(() => {
-    resizeMessageBar();
-    addEventListener("resize", resizeMessageBar);
-  }, 200);
-}
-var currentTheme = THEMES[localStorage.theme || "dark"];
+var ALIASES = {
+  default: "dark",
+  bi: "bisexual",
+  transgender: "trans",
+  enby: "nonbinary",
+  wlw: "lesbian",
+  mlm: "gay",
+  ase: "asexual"
+};
+var getTheme = (name) => THEMES[name] ?? THEMES[ALIASES[name]];
+var currentTheme = getTheme(localStorage.theme || "dark");
 var shadersLoaded = false;
 setTheme(currentTheme);
 var shaders;
 async function setTheme(theme) {
   if (isPrideMonth && !theme.pride) {
-    theme = THEMES[localStorage.prideTheme || "pride"];
+    theme = getTheme(localStorage.prideTheme || "pride");
   }
   if (currentTheme?.classNames) {
     currentTheme.classNames.forEach((n) => document.documentElement.classList.remove(n));
@@ -458,14 +517,15 @@ async function setTheme(theme) {
     theme.classNames.forEach((n) => document.documentElement.classList.add(n));
   }
   if (theme?.shader) {
-    if (!shadersLoaded) await enableShaders();
-    shaders.set(theme.shader.frag, theme.shader.uniforms ?? {});
+    if (!shadersLoaded) enableShaders();
+    (await shaders).set(theme.shader.frag, theme.shader.uniforms ?? {});
   } else if (currentTheme?.shader) {
-    disableShaders();
+    await disableShaders();
   }
+  setMessage(theme.message ?? "");
   currentTheme = theme;
 }
-async function enableShaders() {
+function enableShaders() {
   function updateCanvasSize() {
     el.shaderCanvas.width = innerWidth;
     el.shaderCanvas.height = innerHeight;
@@ -473,17 +533,21 @@ async function enableShaders() {
   addEventListener("resize", updateCanvasSize);
   updateCanvasSize();
   el.shaderCanvas.style.display = "block";
-  shaders = await Promise.resolve().then(() => (init_shaders(), shaders_exports));
+  shaders = Promise.resolve().then(() => (init_shaders(), shaders_exports));
   shadersLoaded = true;
 }
-function disableShaders() {
+async function disableShaders() {
+  if (!shadersLoaded) return;
   el.shaderCanvas.style.display = "none";
-  shaders.unset();
+  (await shaders).unset();
+  shadersLoaded = false;
+  console.log("shaders disabled");
 }
 
 // ts/cmdLine.ts
 var cmdLineOpen = false;
 var input = "";
+var autocomplete = "";
 function openCmdline() {
   if (cmdLineOpen) return closeCmdline();
   setKeyboardSelection(-1);
@@ -491,6 +555,7 @@ function openCmdline() {
   el.content.classList.add("hidden");
   document.querySelector("#links > a.selected")?.classList.remove("selected");
   el.cmdLine.classList.remove("hidden");
+  updateAutocomplete();
   cmdLineOpen = true;
 }
 function closeCmdline() {
@@ -512,28 +577,38 @@ function handleBackspace() {
   updateAutocomplete();
 }
 function handleEnterCommand() {
-  const cmd = input.split(" ")[0];
-  COMMANDS[cmd]?.(input.substring(cmd.length + 1));
+  runCommand(input);
   closeCmdline();
+}
+function runCommand(input2) {
+  const cmd = input2.split(" ")[0];
+  const fn = COMMANDS[cmd];
+  if (fn == null) {
+    console.log(`invalid command ${cmd}.`);
+  } else {
+    fn(input2.substring(cmd.length + 1));
+  }
 }
 function updateAutocomplete() {
   if (input.length !== 0) {
-    for (const cmd in COMMANDS) {
-      if (Object.hasOwn(COMMANDS, cmd) && cmd.startsWith(input)) {
-        console.log(cmd.substring(input.length));
-        el.cmdAutocomplete.innerText = cmd.substring(input.length);
-        return;
+    autocomplete = "";
+    if (!input.includes(" ")) {
+      for (const cmd in COMMANDS) {
+        if (Object.hasOwn(COMMANDS, cmd) && cmd.startsWith(input)) {
+          autocomplete = cmd.substring(input.length);
+          break;
+        }
       }
     }
-  }
-  el.cmdAutocomplete.innerText = "";
+  } else autocomplete = "help";
+  el.cmdAutocomplete.innerText = autocomplete;
 }
 var COMMANDS = {
   help() {
-    location.pathname = "cmdline/";
+    router.goto("/cmdline");
   },
   theme(input2) {
-    const theme = THEMES[input2];
+    const theme = getTheme(input2);
     if (theme != null) {
       setTheme(theme);
       localStorage.theme = input2;
@@ -541,12 +616,18 @@ var COMMANDS = {
     }
   },
   cd(input2) {
-    location.pathname = input2;
+    router.goto("/input");
   },
   echo(input2) {
-    alert(input2);
+    setMessage(input2);
   }
 };
+var urlParam = new URLSearchParams(location.search).get("run");
+if (urlParam != null) {
+  runCommand(urlParam);
+  console.log(location.href.split("?")[0]);
+  history.replaceState({}, "", location.href.split("?")[0]);
+}
 
 // ts/keyboard.ts
 var keyboardSelection = -1;
@@ -610,7 +691,7 @@ addEventListener("keydown", (e) => {
 });
 
 // ts/selector.ts
-init_elements();
+init_consts();
 function updateSelection2() {
   if (inputDisabled || cmdLineOpen) return;
   document.querySelector("a.selected")?.classList.remove("selected");

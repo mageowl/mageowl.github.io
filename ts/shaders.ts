@@ -1,4 +1,4 @@
-import { el } from "./elements.ts";
+import { el } from "./consts.ts";
 
 function assert<T>(value: T | null | undefined, msg: string): T {
   if (value == null) {

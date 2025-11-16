@@ -1,5 +1,5 @@
 import { goBack } from "./animation.ts";
-import { el } from "./elements.ts";
+import { el } from "./consts.ts";
 import { links } from "./links.ts";
 import {
   closeCmdline,

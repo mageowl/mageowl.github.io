@@ -1,9 +1,11 @@
-import { el } from "./elements.ts";
+import { el } from "./consts.ts";
 import { setKeyboardSelection } from "./keyboard.ts";
-import { setTheme, THEMES } from "./themes.ts";
+import { setMessage } from "./messageBar.ts";
+import { getTheme, setTheme, THEMES } from "./themes.ts";
 
 export let cmdLineOpen = false;
 let input = "";
+let autocomplete = "";
 
 export function openCmdline() {
   if (cmdLineOpen) return closeCmdline();
@@ -14,6 +16,7 @@ export function openCmdline() {
   document.querySelector("#links > a.selected")?.classList.remove("selected");
 
   el.cmdLine.classList.remove("hidden");
+  updateAutocomplete();
   cmdLineOpen = true;
 }
 
@@ -38,10 +41,13 @@ export function handleBackspace() {
   updateAutocomplete();
 }
 
-export function handleEnterCommand() {
-  const cmd = input.split(" ")[0];
-  COMMANDS[cmd]?.(input.substring(cmd.length + 1));
+export function handleTabAutocomplete() {
+  input += autocomplete;
+  updateAutocomplete();
+}
 
+export function handleEnterCommand() {
+  runCommand(input);
   closeCmdline();
 }
 
@@ -49,25 +55,39 @@ export function handleAutocomplete() {
   input += el.cmdAutocomplete.innerText;
 }
 
+export function runCommand(input: string) {
+  const cmd = input.split(" ")[0];
+  const fn = COMMANDS[cmd];
+  if (fn == null) {
+    console.log(`invalid command ${cmd}.`);
+  } else {
+    fn(input.substring(cmd.length + 1));
+  }
+}
+
 function updateAutocomplete() {
   if (input.length !== 0) {
-    for (const cmd in COMMANDS) {
-      if (Object.hasOwn(COMMANDS, cmd) && cmd.startsWith(input)) {
-        console.log(cmd.substring(input.length));
-        el.cmdAutocomplete.innerText = cmd.substring(input.length);
-        return;
+    autocomplete = "";
+    if (!input.includes(" ")) {
+      for (const cmd in COMMANDS) {
+        if (Object.hasOwn(COMMANDS, cmd) && cmd.startsWith(input)) {
+          // console.log(cmd.substring(input.length));
+          autocomplete = cmd.substring(input.length);
+          break;
+        }
       }
     }
-  }
-  el.cmdAutocomplete.innerText = "";
+  } else autocomplete = "help";
+
+  el.cmdAutocomplete.innerText = autocomplete;
 }
 
 const COMMANDS: { [name: string]: (input: string) => void } = {
   help() {
-    location.pathname = "cmdline/";
+    router.goto("/cmdline");
   },
   theme(input) {
-    const theme = THEMES[input];
+    const theme = getTheme(input);
     if (theme != null) {
       setTheme(theme);
       localStorage.theme = input;
@@ -75,9 +95,16 @@ const COMMANDS: { [name: string]: (input: string) => void } = {
     }
   },
   cd(input) {
-    location.pathname = input;
+    router.goto("/input");
   },
   echo(input) {
-    alert(input);
+    setMessage(input);
   },
 };
+
+const urlParam = new URLSearchParams(location.search).get("run");
+if (urlParam != null) {
+  runCommand(urlParam);
+  console.log(location.href.split("?")[0]);
+  history.replaceState({}, "", location.href.split("?")[0]);
+}

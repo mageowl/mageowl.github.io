@@ -1,13 +1,13 @@
-// ts/elements.ts
-function get(query) {
+function get(query: string): HTMLElement {
   const e = document.querySelector(query);
   if (e != null) {
-    return e;
+    return e as HTMLElement;
   } else {
     throw `could not get element ${query}`;
   }
 }
-var el = {
+
+export const el = {
   links: get("#links"),
   selector: get("#selector"),
   title: get("#title"),
@@ -18,8 +18,7 @@ var el = {
   content: get("div#center"),
   messageBar: get("div#message-bar"),
   messageBarContent: get("div#message-bar div"),
-  shaderCanvas: get("canvas#shader")
+  shaderCanvas: get("canvas#shader") as HTMLCanvasElement,
 };
-export {
-  el
-};
+
+export const isPrideMonth = new Date().getMonth() === 5;
