@@ -1,13 +1,13 @@
-import { el } from "./elements.js";
+import { el } from "./elements.ts";
 
-const isMobile = window.innerWidth <= 400;
+const isMobile = innerWidth <= 400;
 
 if (isMobile) {
-    window.addEventListener("navigate", () => {
-        el.pathBack.style.display = router.path == "/" ? "none" : "block";
-    });
+  addEventListener("navigate", () => {
+    el.pathBack.style.display = router.path == "/" ? "none" : "block";
+  });
 
-    if (router.path == "/") {
-        el.pathBack.style.display = "none";
-    }
+  if (router.path == "/") {
+    el.pathBack.style.display = "none";
+  }
 }

@@ -1,5 +1,4 @@
-import { el } from "./elements.js";
-import { setKeyboardSelection } from "./keyboard.js";
+import { el } from "./elements.ts";
 
 interface Theme {
   classNames?: string[];
@@ -122,11 +121,11 @@ if (isPrideMonth) {
 
 let currentTheme = THEMES[localStorage.theme || "dark"];
 
-let shadersEnabled = false;
+let shadersLoaded = false;
 
 setTheme(currentTheme);
 
-let shaders: typeof import("./shaders.js");
+let shaders: typeof import("./shaders.ts");
 export async function setTheme(theme: Theme) {
   if (isPrideMonth && !theme.pride) {
     theme = THEMES[localStorage.prideTheme || "pride"];
@@ -141,7 +140,7 @@ export async function setTheme(theme: Theme) {
     theme.classNames.forEach((n) => document.documentElement.classList.add(n));
   }
   if (theme?.shader) {
-    if (!shadersEnabled) await enableShaders();
+    if (!shadersLoaded) await enableShaders();
     shaders.set(theme.shader.frag, theme.shader.uniforms ?? {});
   } else if (currentTheme?.shader) {
     disableShaders();
@@ -156,12 +155,13 @@ async function enableShaders() {
     el.shaderCanvas.height = innerHeight;
   }
 
-  window.addEventListener("resize", updateCanvasSize);
+  addEventListener("resize", updateCanvasSize);
   updateCanvasSize();
 
   el.shaderCanvas.style.display = "block";
 
-  shaders = await import("./shaders.js");
+  shaders = await import("./shaders.ts");
+  shadersLoaded = true;
 }
 
 function disableShaders() {

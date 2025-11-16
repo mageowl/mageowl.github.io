@@ -1,32 +1,34 @@
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title sr-prop="title" />
-        <link href="/css/page.css" rel="stylesheet" />
-    </head>
 
-    <body>
-        <noscript>this page require javascript.</noscript>
-        <canvas id="shader" style="display: none"></canvas>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title sr-prop="title" />
+  <link href="/css/page.css" rel="stylesheet" />
+</head>
 
-        <div id="message-bar" class="hide"><div></div></div>
-        <h1 id="path-back" sr-prop="back"></h1>
-        <div id="center">
-            <h1 id="title" sr-prop="title" />
-            <div id="links" sr-prop="links" />
-        </div>
-        <span id="help"
-            >↑ ↓: move | <span class="icon space"></span> or ↵: select |
-            <span class="icon delete"></span>: go back</span
-        >
-        <div id="selector" class="hidden"></div>
-        <div id="cmd-line" class="hidden">
-            <span class="input"></span>
-            <span class="cursor">_</span>
-            <span class="autocomplete"></span>
-        </div>
+<body>
+  <noscript>this page require javascript.</noscript>
+  <canvas id="shader" style="display: none"></canvas>
 
-        <script src="/js/page.js" type="module"></script>
-    </body>
+  <div id="message-bar" class="hide">
+    <div></div>
+  </div>
+  <h1 id="path-back" sr-prop="back"></h1>
+  <div id="center">
+    <h1 id="title" sr-prop="title" />
+    <div id="links" sr-prop="links" />
+  </div>
+  <span id="help">↑ ↓: move | <span class="icon space"></span> or ↵: select |
+    <span class="icon delete"></span>: go back</span>
+  <div id="selector" class="hidden"></div>
+  <div id="cmd-line" class="hidden">
+    <span class="input"></span>
+    <span class="cursor">_</span>
+    <span class="autocomplete"></span>
+  </div>
+
+  <script src="/js/main.js" type="module"></script>
+</body>
+
 </html>

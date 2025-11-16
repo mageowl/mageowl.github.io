@@ -1,60 +1,61 @@
-import { links } from "./links.js";
+import { links } from "./links.ts";
 import {
-    inputDisabled,
-    keyboardSelection,
-    setKeyboardSelection,
-} from "./keyboard.js";
-import { go, goBack } from "./animation.js";
-import { cmdLineOpen } from "./cmdLine.js";
-import { el } from "./elements.js";
+  inputDisabled,
+  keyboardSelection,
+  setKeyboardSelection,
+} from "./keyboard.ts";
+import { go, goBack } from "./animation.ts";
+import { cmdLineOpen } from "./cmdLine.ts";
+import { el } from "./elements.ts";
 
 function updateSelection() {
-    if (inputDisabled || cmdLineOpen) return;
+  if (inputDisabled || cmdLineOpen) return;
 
-    document.querySelector("a.selected")?.classList.remove("selected");
-    const selected = document.querySelector("#links > a:hover");
+  document.querySelector("a.selected")?.classList.remove("selected");
+  const selected = document.querySelector("#links > a:hover");
 
-    if (selected != null) {
-        setKeyboardSelection(-1);
+  if (selected != null) {
+    setKeyboardSelection(-1);
 
-        el.selector.style.top = `${selected.getBoundingClientRect().top}px`;
-        selected.classList.add("selected");
-        setTimeout(() => el.selector.classList.remove("hidden"), 1);
-    } else {
-        el.selector.classList.add("hidden");
-    }
+    el.selector.style.top = `${selected.getBoundingClientRect().top}px`;
+    selected.classList.add("selected");
+    setTimeout(() => el.selector.classList.remove("hidden"), 1);
+  } else {
+    el.selector.classList.add("hidden");
+  }
 }
 
 function updateLinks() {
-    links.forEach((link) => {
-        link.addEventListener("mouseenter", updateSelection);
-        link.addEventListener("mouseleave", updateSelection);
+  links.forEach((link) => {
+    link.addEventListener("mouseenter", updateSelection);
+    link.addEventListener("mouseleave", updateSelection);
 
-        if (
-            link.origin != window.origin ||
-            link.hasAttribute("data-force-reload")
-        )
-            return;
+    if (
+      link.origin != origin ||
+      link.hasAttribute("data-force-reload")
+    ) {
+      return;
+    }
 
-        link.addEventListener("click", (e) => {
-            e.preventDefault();
-            go(link.href);
-        });
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      go(link.href);
     });
+  });
 }
 updateLinks();
 
-window.addEventListener("navigate", updateLinks);
+addEventListener("navigate", updateLinks);
 
-window.addEventListener("mousemove", () => {
-    if (keyboardSelection !== -1) {
-        document.querySelector("a.selected")?.classList.remove("selected");
-        el.selector.classList.add("hidden");
-    }
+addEventListener("mousemove", () => {
+  if (keyboardSelection !== -1) {
+    document.querySelector("a.selected")?.classList.remove("selected");
+    el.selector.classList.add("hidden");
+  }
 
-    setKeyboardSelection(-1);
+  setKeyboardSelection(-1);
 });
 
 el.pathBack.addEventListener("click", () => {
-    goBack();
+  goBack();
 });

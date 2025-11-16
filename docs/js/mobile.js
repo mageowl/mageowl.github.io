@@ -1,10 +1,33 @@
-import { el } from "./elements.js";
-const isMobile = window.innerWidth <= 400;
+// ts/elements.ts
+function get(query) {
+  const e = document.querySelector(query);
+  if (e != null) {
+    return e;
+  } else {
+    throw `could not get element ${query}`;
+  }
+}
+var el = {
+  links: get("#links"),
+  selector: get("#selector"),
+  title: get("#title"),
+  pathBack: get("#path-back"),
+  cmdLine: get("div#cmd-line"),
+  cmdInput: get("div#cmd-line .input"),
+  cmdAutocomplete: get("div#cmd-line .autocomplete"),
+  content: get("div#center"),
+  messageBar: get("div#message-bar"),
+  messageBarContent: get("div#message-bar div"),
+  shaderCanvas: get("canvas#shader")
+};
+
+// ts/mobile.ts
+var isMobile = innerWidth <= 400;
 if (isMobile) {
-    window.addEventListener("navigate", () => {
-        el.pathBack.style.display = router.path == "/" ? "none" : "block";
-    });
-    if (router.path == "/") {
-        el.pathBack.style.display = "none";
-    }
+  addEventListener("navigate", () => {
+    el.pathBack.style.display = router.path == "/" ? "none" : "block";
+  });
+  if (router.path == "/") {
+    el.pathBack.style.display = "none";
+  }
 }

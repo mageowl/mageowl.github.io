@@ -1,7 +1,7 @@
 library_version = "0.2"
 
 [source]
-exclude = [".git", ".ignore", ".on_commit.fish", "run"]
+exclude = [".git", ".ignore", ".on_commit.fish", "run", "ts"]
 
 [out]
 path = "docs/"
@@ -11,5 +11,5 @@ lib_file = "js/router.js"
 update_anchors = false
 
 [scripts]
-prebuild = "tsc"
-postbuild = "rm -rf ./js/ ./docs/ts/"
+prebuild = "deno bundle --outdir js ./ts/**.ts"
+postbuild = "rm -rf js/"

@@ -1,20 +1,23 @@
 <!doctype html><html lang="en">
-    <head>
-        <meta charset="UTF-8"></meta>
-        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-        <title data-sr-prop="title">about me</title>
-        <link href="/css/page.css" rel="stylesheet"></link>
-    <script src="/js/router.js"></script></head>
 
-    <body>
-        <noscript>this page require javascript.</noscript>
-        <canvas id="shader" style="display: none"></canvas>
+<head>
+  <meta charset="UTF-8"></meta>
+  <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+  <title data-sr-prop="title">about me</title>
+  <link href="/css/page.css" rel="stylesheet"></link>
+<script src="/js/router.js"></script></head>
 
-        <div id="message-bar" class="hide"><div></div></div>
-        <h1 id="path-back" data-sr-prop="back">mageowl/</h1>
-        <div id="center">
-            <h1 id="title" data-sr-prop="title">about me</h1>
-            <div id="links" data-sr-prop="links">
+<body>
+  <noscript>this page require javascript.</noscript>
+  <canvas id="shader" style="display: none"></canvas>
+
+  <div id="message-bar" class="hide">
+    <div></div>
+  </div>
+  <h1 id="path-back" data-sr-prop="back">mageowl/</h1>
+  <div id="center">
+    <h1 id="title" data-sr-prop="title">about me</h1>
+    <div id="links" data-sr-prop="links">
     <p>
         Hey! My name is Owen. I am a hobbist game developer in high school. If
         you're here, you probably know me in person. Currently, I'm in the
@@ -22,16 +25,17 @@
     </p>
     <em>press <span class="hotkey"></span>+k for easter eggs :)</em>
 </div>
-        </div>
-        <span id="help">↑ ↓: move | <span class="icon space"></span> or ↵: select |
-            <span class="icon delete"></span>: go back</span>
-        <div id="selector" class="hidden"></div>
-        <div id="cmd-line" class="hidden">
-            <span class="input"></span>
-            <span class="cursor">_</span>
-            <span class="autocomplete"></span>
-        </div>
+  </div>
+  <span id="help">↑ ↓: move | <span class="icon space"></span> or ↵: select |
+    <span class="icon delete"></span>: go back</span>
+  <div id="selector" class="hidden"></div>
+  <div id="cmd-line" class="hidden">
+    <span class="input"></span>
+    <span class="cursor">_</span>
+    <span class="autocomplete"></span>
+  </div>
 
-        <script src="/js/page.js" type="module"></script>
-    </body>
+  <script src="/js/main.js" type="module"></script>
+</body>
+
 </html>

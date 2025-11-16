@@ -1,4 +1,4 @@
-import { el } from "./elements.js";
+import { el } from "./elements.ts";
 
 function assert<T>(value: T | null | undefined, msg: string): T {
   if (value == null) {
@@ -60,7 +60,7 @@ async function buildProgram(
 
   await Promise.all(
     shaderInfo.map(async (desc) => {
-      let shader = shaderCache[desc.path] ??
+      const shader = shaderCache[desc.path] ??
         (await compileShader(desc.path, desc.type));
       gl.attachShader(program, shader);
     }),
