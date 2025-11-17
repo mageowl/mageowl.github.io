@@ -95,7 +95,7 @@ const COMMANDS: { [name: string]: (input: string) => void } = {
     }
   },
   cd(input) {
-    router.goto("/input");
+    router.goto(input);
   },
   echo(input) {
     setMessage(input);

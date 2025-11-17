@@ -9,8 +9,6 @@ function resizeMessageBar() {
     return;
   }
 
-  el.messageBar.classList.remove("hide");
-
   const spacedMessage = message.endsWith("\u00a0")
     ? message
     : message + "\u00a0\u00a0";
@@ -26,6 +24,7 @@ function showMessageBar() {
   visible = true;
   setTimeout(() => {
     resizeMessageBar();
+    el.messageBar.classList.remove("hide");
     addEventListener("resize", resizeMessageBar);
   }, 200);
 }

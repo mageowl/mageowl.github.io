@@ -70,6 +70,7 @@ export const THEMES: { [key: string]: Theme } = {
   lesbian: {
     classNames: ["transparent", "light-mode"],
     pride: true,
+    message: "GIRLKISSER",
     shader: {
       frag: "glsl/gradient.glsl",
       uniforms: {
@@ -82,6 +83,7 @@ export const THEMES: { [key: string]: Theme } = {
   gay: {
     classNames: ["transparent", "light-mode"],
     pride: true,
+    message: "BOYKISSER",
     shader: {
       frag: "glsl/gradient.glsl",
       uniforms: {

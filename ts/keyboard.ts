@@ -32,7 +32,7 @@ addEventListener("keydown", (e) => {
   if (inputDisabled) e.preventDefault();
   else if (
     cmdLineOpen &&
-    "abcdefghijklmnopqrstuvwxyz /-.1234567890".includes(
+    "abcdefghijklmnopqrstuvwxyz /-.1234567890:;<>*{}[]".includes(
       e.key.toLowerCase(),
     ) &&
     !(e.ctrlKey || e.metaKey)
