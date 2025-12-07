@@ -26,11 +26,6 @@ var isPrideMonth = (/* @__PURE__ */ new Date()).getMonth() === 5;
 var visible = false;
 var message = "";
 function resizeMessageBar() {
-  if (!visible) {
-    removeEventListener("resize", resizeMessageBar);
-    return;
-  }
-  el.messageBar.classList.remove("hide");
   const spacedMessage = message.endsWith("\xA0") ? message : message + "\xA0\xA0";
   el.messageBarContent.innerText = spacedMessage;
   const msgWidth = el.messageBarContent.clientWidth;
@@ -42,11 +37,13 @@ function showMessageBar() {
   visible = true;
   setTimeout(() => {
     resizeMessageBar();
+    el.messageBar.classList.remove("hide");
     addEventListener("resize", resizeMessageBar);
   }, 200);
 }
 function hideMessageBar() {
   el.messageBar.classList.add("hide");
+  removeEventListener("resize", resizeMessageBar);
 }
 function setMessage(value) {
   if (isPrideMonth) return;

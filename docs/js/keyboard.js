@@ -274,11 +274,6 @@ init_consts();
 var visible = false;
 var message = "";
 function resizeMessageBar() {
-  if (!visible) {
-    removeEventListener("resize", resizeMessageBar);
-    return;
-  }
-  el.messageBar.classList.remove("hide");
   const spacedMessage = message.endsWith("\xA0") ? message : message + "\xA0\xA0";
   el.messageBarContent.innerText = spacedMessage;
   const msgWidth = el.messageBarContent.clientWidth;
@@ -290,11 +285,13 @@ function showMessageBar() {
   visible = true;
   setTimeout(() => {
     resizeMessageBar();
+    el.messageBar.classList.remove("hide");
     addEventListener("resize", resizeMessageBar);
   }, 200);
 }
 function hideMessageBar() {
   el.messageBar.classList.add("hide");
+  removeEventListener("resize", resizeMessageBar);
 }
 function setMessage(value) {
   if (isPrideMonth) return;
@@ -398,6 +395,7 @@ var THEMES = {
       "light-mode"
     ],
     pride: true,
+    message: "GIRLKISSER",
     shader: {
       frag: "glsl/gradient.glsl",
       uniforms: {
@@ -413,6 +411,7 @@ var THEMES = {
       "light-mode"
     ],
     pride: true,
+    message: "BOYKISSER",
     shader: {
       frag: "glsl/gradient.glsl",
       uniforms: {
@@ -583,7 +582,7 @@ var COMMANDS = {
     }
   },
   cd(input2) {
-    router.goto("/input");
+    router.goto(input2);
   },
   echo(input2) {
     setMessage(input2);
@@ -611,7 +610,7 @@ function updateSelection() {
 addEventListener("resize", updateSelection);
 addEventListener("keydown", (e) => {
   if (inputDisabled) e.preventDefault();
-  else if (cmdLineOpen && "abcdefghijklmnopqrstuvwxyz /-.1234567890".includes(e.key.toLowerCase()) && !(e.ctrlKey || e.metaKey)) {
+  else if (cmdLineOpen && "abcdefghijklmnopqrstuvwxyz /-.1234567890:;<>*{}[]".includes(e.key.toLowerCase()) && !(e.ctrlKey || e.metaKey)) {
     handleLetter(e.key.toLowerCase());
     e.preventDefault();
   } else if (cmdLineOpen && e.key === "Enter") {
