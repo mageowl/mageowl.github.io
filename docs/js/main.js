@@ -424,7 +424,7 @@ async function disableShaders() {
 
 // ts/mobile.ts
 init_consts();
-var isMobile = innerWidth <= 400;
+var isMobile = "ontouchstart" in window || navigator.maxTouchPoints > 0;
 if (isMobile) {
   addEventListener("navigate", () => {
     el.pathBack.style.display = router.path == "/" ? "none" : "block";
@@ -432,6 +432,7 @@ if (isMobile) {
   if (router.path == "/") {
     el.pathBack.style.display = "none";
   }
+  document.documentElement.classList.add("mobile");
 }
 
 // ts/links.ts

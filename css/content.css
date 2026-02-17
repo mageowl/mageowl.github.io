@@ -89,7 +89,7 @@ div#center {
                 vertical-align: middle;
 
                 background: var(--fg);
-                mask-size: 2.7rem !important;
+                mask-size: cover !important;
             }
 
             &.discord::before {

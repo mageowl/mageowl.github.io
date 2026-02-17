@@ -1,6 +1,6 @@
 import { el } from "./consts.ts";
 
-const isMobile = innerWidth <= 400;
+const isMobile = "ontouchstart" in window || navigator.maxTouchPoints > 0;
 
 if (isMobile) {
   addEventListener("navigate", () => {
@@ -10,4 +10,6 @@ if (isMobile) {
   if (router.path == "/") {
     el.pathBack.style.display = "none";
   }
+
+  document.documentElement.classList.add("mobile");
 }

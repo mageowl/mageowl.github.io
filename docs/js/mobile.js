@@ -23,7 +23,7 @@ var el = {
 var isPrideMonth = (/* @__PURE__ */ new Date()).getMonth() === 5;
 
 // ts/mobile.ts
-var isMobile = innerWidth <= 400;
+var isMobile = "ontouchstart" in window || navigator.maxTouchPoints > 0;
 if (isMobile) {
   addEventListener("navigate", () => {
     el.pathBack.style.display = router.path == "/" ? "none" : "block";
@@ -31,4 +31,5 @@ if (isMobile) {
   if (router.path == "/") {
     el.pathBack.style.display = "none";
   }
+  document.documentElement.classList.add("mobile");
 }
