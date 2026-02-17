@@ -1,4 +1,4 @@
 import "./themes.ts";
 import "./mobile.ts";
-import "./selector.ts";
+import "./mouse.ts";
 import "./keyboard.ts";

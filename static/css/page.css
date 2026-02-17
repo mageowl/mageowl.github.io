@@ -15,7 +15,8 @@ body {
     color: var(--fg);
 
     background: var(--bg);
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
+    overflow: hidden;
 }
 
 h1 {

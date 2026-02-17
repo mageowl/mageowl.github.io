@@ -31,7 +31,7 @@ export const THEMES: { [key: string]: Theme } = {
   bisexual: {
     classNames: ["transparent", "light-mode", "no-invert"],
     pride: true,
-    message: "GIRLS AND BOYS AND ENBIES AND\u00a0",
+    message: "YOU ARE VALID",
     shader: {
       frag: "glsl/gradient_noclamp.glsl",
       uniforms: {
@@ -68,9 +68,9 @@ export const THEMES: { [key: string]: Theme } = {
     },
   },
   lesbian: {
-    classNames: ["transparent", "light-mode"],
+    classNames: ["transparent", "light-mode", "no-invert"],
     pride: true,
-    message: "GIRLKISSER",
+    message: "YOU ARE VALID",
     shader: {
       frag: "glsl/gradient.glsl",
       uniforms: {
@@ -81,9 +81,9 @@ export const THEMES: { [key: string]: Theme } = {
     },
   },
   gay: {
-    classNames: ["transparent", "light-mode"],
+    classNames: ["transparent", "light-mode", "no-invert"],
     pride: true,
-    message: "BOYKISSER",
+    message: "YOU ARE VALID",
     shader: {
       frag: "glsl/gradient.glsl",
       uniforms: {
@@ -94,7 +94,7 @@ export const THEMES: { [key: string]: Theme } = {
     },
   },
   asexual: {
-    classNames: ["transparent", "light-mode"],
+    classNames: ["transparent", "light-mode", "no-invert"],
     pride: true,
     message: "GARLIC BREAD",
     shader: {
@@ -106,6 +106,19 @@ export const THEMES: { [key: string]: Theme } = {
       },
     },
   },
+  aroace: {
+    classNames: ["transparent", "light-mode", "no-invert"],
+    pride: true,
+    message: "GARLIC BREAD",
+    shader: {
+      frag: "glsl/gradient_noclamp.glsl",
+      uniforms: {
+        color1: color(0xFECA3C),
+        color2: color(0xffffff),
+        color3: color(0x74ACDD),
+      },
+    },
+  },
   fire: {
     classNames: ["transparent", "fire"],
     shader: {
@@ -113,7 +126,7 @@ export const THEMES: { [key: string]: Theme } = {
     },
   },
   retro: {
-    classNames: ["retro", "no-anim"],
+    classNames: ["retro"],
   },
   alpha: {
     classNames: ["transparent"],
@@ -127,7 +140,7 @@ const ALIASES: { [alias: string]: string } = {
   enby: "nonbinary",
   wlw: "lesbian",
   mlm: "gay",
-  ase: "asexual",
+  ace: "asexual",
 };
 
 export const getTheme = (name: string) => THEMES[name] ?? THEMES[ALIASES[name]];
@@ -158,7 +171,7 @@ export async function setTheme(theme: Theme) {
     await disableShaders();
   }
 
-  setMessage(theme.message ?? "");
+  setMessage(theme.message ?? "", "theme");
 
   currentTheme = theme;
 }

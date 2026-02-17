@@ -1,7 +1,7 @@
 import { el } from "./consts.ts";
 import { setKeyboardSelection } from "./keyboard.ts";
 import { setMessage } from "./messageBar.ts";
-import { getTheme, setTheme, THEMES } from "./themes.ts";
+import { getTheme, setTheme } from "./themes.ts";
 
 export let cmdLineOpen = false;
 let input = "";
@@ -98,7 +98,8 @@ const COMMANDS: { [name: string]: (input: string) => void } = {
     router.goto(input);
   },
   echo(input) {
-    setMessage(input);
+    localStorage.customMessage = input;
+    setMessage(input, "user");
   },
 };
 

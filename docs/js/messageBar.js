@@ -45,8 +45,9 @@ function hideMessageBar() {
   el.messageBar.classList.add("hide");
   removeEventListener("resize", resizeMessageBar);
 }
-function setMessage(value) {
-  if (isPrideMonth) return;
+function setMessage(value, type) {
+  if (isPrideMonth && type !== "prideMonth") return;
+  if (localStorage.customMessage && type === "theme") return;
   message = value;
   if (message !== "") {
     if (!visible) showMessageBar();
@@ -56,7 +57,9 @@ function setMessage(value) {
   }
 }
 if (isPrideMonth) {
-  setMessage("HAPPY PRIDE MONTH!!");
+  setMessage("HAPPY PRIDE MONTH!!", "prideMonth");
+} else if (localStorage.customMessage) {
+  setMessage(localStorage.customMessage, "user");
 }
 export {
   setMessage

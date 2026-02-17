@@ -11,7 +11,9 @@
 
   div {
     width: fit-content;
+
     white-space: nowrap;
+    line-height: 32px;
 
     animation: scroll calc(var(--msg-width) * .01s) linear infinite;
   }

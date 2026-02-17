@@ -326,8 +326,9 @@ function hideMessageBar() {
   el.messageBar.classList.add("hide");
   removeEventListener("resize", resizeMessageBar);
 }
-function setMessage(value) {
-  if (isPrideMonth) return;
+function setMessage(value, type) {
+  if (isPrideMonth && type !== "prideMonth") return;
+  if (localStorage.customMessage && type === "theme") return;
   message = value;
   if (message !== "") {
     if (!visible) showMessageBar();
@@ -337,7 +338,9 @@ function setMessage(value) {
   }
 }
 if (isPrideMonth) {
-  setMessage("HAPPY PRIDE MONTH!!");
+  setMessage("HAPPY PRIDE MONTH!!", "prideMonth");
+} else if (localStorage.customMessage) {
+  setMessage(localStorage.customMessage, "user");
 }
 
 // static/ts/themes.ts
@@ -375,7 +378,7 @@ var THEMES = {
       "no-invert"
     ],
     pride: true,
-    message: "GIRLS AND BOYS AND ENBIES AND\xA0",
+    message: "YOU ARE VALID",
     shader: {
       frag: "glsl/gradient_noclamp.glsl",
       uniforms: {
@@ -425,10 +428,11 @@ var THEMES = {
   lesbian: {
     classNames: [
       "transparent",
-      "light-mode"
+      "light-mode",
+      "no-invert"
     ],
     pride: true,
-    message: "GIRLKISSER",
+    message: "YOU ARE VALID",
     shader: {
       frag: "glsl/gradient.glsl",
       uniforms: {
@@ -441,10 +445,11 @@ var THEMES = {
   gay: {
     classNames: [
       "transparent",
-      "light-mode"
+      "light-mode",
+      "no-invert"
     ],
     pride: true,
-    message: "BOYKISSER",
+    message: "YOU ARE VALID",
     shader: {
       frag: "glsl/gradient.glsl",
       uniforms: {
@@ -457,7 +462,8 @@ var THEMES = {
   asexual: {
     classNames: [
       "transparent",
-      "light-mode"
+      "light-mode",
+      "no-invert"
     ],
     pride: true,
     message: "GARLIC BREAD",
@@ -467,6 +473,23 @@ var THEMES = {
         color1: color(6710886),
         color2: color(16777215),
         color3: color(8652932)
+      }
+    }
+  },
+  aroace: {
+    classNames: [
+      "transparent",
+      "light-mode",
+      "no-invert"
+    ],
+    pride: true,
+    message: "GARLIC BREAD",
+    shader: {
+      frag: "glsl/gradient_noclamp.glsl",
+      uniforms: {
+        color1: color(16697916),
+        color2: color(16777215),
+        color3: color(7646429)
       }
     }
   },
@@ -481,8 +504,7 @@ var THEMES = {
   },
   retro: {
     classNames: [
-      "retro",
-      "no-anim"
+      "retro"
     ]
   },
   alpha: {
@@ -498,7 +520,7 @@ var ALIASES = {
   enby: "nonbinary",
   wlw: "lesbian",
   mlm: "gay",
-  ase: "asexual"
+  ace: "asexual"
 };
 var getTheme = (name) => THEMES[name] ?? THEMES[ALIASES[name]];
 var currentTheme = getTheme(localStorage.theme || "dark");
@@ -521,7 +543,7 @@ async function setTheme(theme) {
   } else if (currentTheme?.shader) {
     await disableShaders();
   }
-  setMessage(theme.message ?? "");
+  setMessage(theme.message ?? "", "theme");
   currentTheme = theme;
 }
 function enableShaders() {
@@ -618,7 +640,8 @@ var COMMANDS = {
     router.goto(input2);
   },
   echo(input2) {
-    setMessage(input2);
+    localStorage.customMessage = input2;
+    setMessage(input2, "user");
   }
 };
 var urlParam = new URLSearchParams(location.search).get("run");
@@ -689,7 +712,7 @@ addEventListener("keydown", (e) => {
   }
 });
 
-// static/ts/selector.ts
+// static/ts/mouse.ts
 init_consts();
 function updateSelection2() {
   if (inputDisabled || cmdLineOpen) return;
@@ -719,13 +742,15 @@ function updateLinks() {
 }
 updateLinks();
 addEventListener("navigate", updateLinks);
-addEventListener("mousemove", () => {
+function hideSelector() {
   if (keyboardSelection !== -1) {
     document.querySelector("a.selected")?.classList.remove("selected");
     el.selector.classList.add("hidden");
   }
   setKeyboardSelection(-1);
-});
+}
+addEventListener("mousemove", hideSelector);
+addEventListener("wheel", hideSelector);
 el.pathBack.addEventListener("click", () => {
   goBack();
 });

@@ -47,14 +47,16 @@ updateLinks();
 
 addEventListener("navigate", updateLinks);
 
-addEventListener("mousemove", () => {
+function hideSelector() {
   if (keyboardSelection !== -1) {
     document.querySelector("a.selected")?.classList.remove("selected");
     el.selector.classList.add("hidden");
   }
 
   setKeyboardSelection(-1);
-});
+}
+addEventListener("mousemove", hideSelector);
+addEventListener("wheel", hideSelector);
 
 el.pathBack.addEventListener("click", () => {
   goBack();

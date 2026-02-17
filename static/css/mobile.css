@@ -1,7 +1,10 @@
 html.mobile {
+    overflow-x: hidden;
+    
     body {
         font-size: 1.5rem;
         margin: 16px;
+        overflow-x: hidden;
     }
 
     h1 {
