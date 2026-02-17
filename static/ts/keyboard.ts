@@ -22,8 +22,9 @@ export function setInputDisabled(v: boolean) {
 }
 
 function updateSelection() {
+  const a = links[keyboardSelection];
   el.selector.style.top = `${
-    links[keyboardSelection]?.getBoundingClientRect().top
+    a?.getBoundingClientRect().top + (a?.matches("p > a") ? -8 : 0)
   }px`;
 }
 addEventListener("resize", updateSelection);

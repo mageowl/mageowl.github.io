@@ -101,6 +101,10 @@ const COMMANDS: { [name: string]: (input: string) => void } = {
     localStorage.customMessage = input;
     setMessage(input, "user");
   },
+  clear() {
+    localStorage.customMessage = "";
+    setMessage("", "user");
+  },
 };
 
 const urlParam = new URLSearchParams(location.search).get("run");

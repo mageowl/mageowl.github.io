@@ -226,8 +226,7 @@ function hideMessageBar() {
 }
 function setMessage(value, type) {
   if (isPrideMonth && type !== "prideMonth") return;
-  if (localStorage.customMessage && type === "theme") return;
-  message = value;
+  if (!localStorage.customMessage || type !== "theme") message = value;
   if (message !== "") {
     if (!visible) showMessageBar();
     else resizeMessageBar();
@@ -540,6 +539,10 @@ var COMMANDS = {
   echo(input2) {
     localStorage.customMessage = input2;
     setMessage(input2, "user");
+  },
+  clear() {
+    localStorage.customMessage = "";
+    setMessage("", "user");
   }
 };
 var urlParam = new URLSearchParams(location.search).get("run");
@@ -559,7 +562,8 @@ function setInputDisabled(v) {
   inputDisabled = v;
 }
 function updateSelection() {
-  el.selector.style.top = `${links[keyboardSelection]?.getBoundingClientRect().top}px`;
+  const a = links[keyboardSelection];
+  el.selector.style.top = `${a?.getBoundingClientRect().top + (a?.matches("p > a") ? -8 : 0)}px`;
 }
 addEventListener("resize", updateSelection);
 addEventListener("keydown", (e) => {

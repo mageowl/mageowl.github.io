@@ -33,9 +33,8 @@ type MessageType = "prideMonth" | "theme" | "user";
 
 export function setMessage(value: string, type: MessageType) {
   if (isPrideMonth && type !== "prideMonth") return;
-  if (localStorage.customMessage && type === "theme") return;
 
-  message = value;
+  if (!localStorage.customMessage || type !== "theme") message = value;
   if (message !== "") {
     if (!visible) showMessageBar();
     else resizeMessageBar();
