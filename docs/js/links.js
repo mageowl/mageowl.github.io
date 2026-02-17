@@ -1,4 +1,4 @@
-// ts/links.ts
+// static/ts/links.ts
 var links = document.querySelectorAll("a");
 addEventListener("navigate", () => {
   links = document.querySelectorAll("a");

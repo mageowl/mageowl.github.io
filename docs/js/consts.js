@@ -1,4 +1,4 @@
-// ts/consts.ts
+// static/ts/consts.ts
 function get(query) {
   const e = document.querySelector(query);
   if (e != null) {

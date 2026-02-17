@@ -1,4 +1,4 @@
-// ts/consts.ts
+// static/ts/consts.ts
 function get(query) {
   const e = document.querySelector(query);
   if (e != null) {
@@ -22,7 +22,7 @@ var el = {
 };
 var isPrideMonth = (/* @__PURE__ */ new Date()).getMonth() === 5;
 
-// ts/mobile.ts
+// static/ts/mobile.ts
 var isMobile = "ontouchstart" in window || navigator.maxTouchPoints > 0;
 if (isMobile) {
   addEventListener("navigate", () => {

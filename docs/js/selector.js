@@ -8,7 +8,7 @@ var __export = (target, all) => {
     __defProp(target, name, { get: all[name], enumerable: true });
 };
 
-// ts/consts.ts
+// static/ts/consts.ts
 function get(query) {
   const e = document.querySelector(query);
   if (e != null) {
@@ -19,7 +19,7 @@ function get(query) {
 }
 var el, isPrideMonth;
 var init_consts = __esm({
-  "ts/consts.ts"() {
+  "static/ts/consts.ts"() {
     el = {
       links: get("#links"),
       selector: get("#selector"),
@@ -37,7 +37,7 @@ var init_consts = __esm({
   }
 });
 
-// ts/shaders.ts
+// static/ts/shaders.ts
 var shaders_exports = {};
 __export(shaders_exports, {
   set: () => set,
@@ -143,7 +143,7 @@ function draw() {
 }
 var gl, ShaderType, shaderCache, program, running, staticUniforms, verticies, vertexBuffer, timeStart;
 var init_shaders = __esm({
-  "ts/shaders.ts"() {
+  "static/ts/shaders.ts"() {
     init_consts();
     gl = assert(el.shaderCanvas.getContext("webgl"), "Could not initialize WebGL.");
     ShaderType = /* @__PURE__ */ function(ShaderType2) {
@@ -179,7 +179,7 @@ var init_shaders = __esm({
   }
 });
 
-// ts/links.ts
+// static/ts/links.ts
 var links = document.querySelectorAll("a");
 addEventListener("navigate", () => {
   links = document.querySelectorAll("a");
@@ -191,7 +191,7 @@ document.querySelectorAll("span.hotkey").forEach((e) => {
   e.innerHTML = navigator.userAgent.includes("Mac") ? "\u2318" : "ctrl";
 });
 
-// ts/animation.ts
+// static/ts/animation.ts
 init_consts();
 function sleep(ms) {
   return new Promise((res) => setTimeout(res, ms));
@@ -296,13 +296,13 @@ async function goBack() {
   }
 }
 
-// ts/keyboard.ts
+// static/ts/keyboard.ts
 init_consts();
 
-// ts/cmdLine.ts
+// static/ts/cmdLine.ts
 init_consts();
 
-// ts/messageBar.ts
+// static/ts/messageBar.ts
 init_consts();
 var visible = false;
 var message = "";
@@ -340,7 +340,7 @@ if (isPrideMonth) {
   setMessage("HAPPY PRIDE MONTH!!");
 }
 
-// ts/themes.ts
+// static/ts/themes.ts
 init_consts();
 function color(hex) {
   return [
@@ -543,7 +543,7 @@ async function disableShaders() {
   console.log("shaders disabled");
 }
 
-// ts/cmdLine.ts
+// static/ts/cmdLine.ts
 var cmdLineOpen = false;
 var input = "";
 var autocomplete = "";
@@ -628,7 +628,7 @@ if (urlParam != null) {
   history.replaceState({}, "", location.href.split("?")[0]);
 }
 
-// ts/keyboard.ts
+// static/ts/keyboard.ts
 var keyboardSelection = -1;
 var inputDisabled = false;
 function setKeyboardSelection(v) {
@@ -689,7 +689,7 @@ addEventListener("keydown", (e) => {
   }
 });
 
-// ts/selector.ts
+// static/ts/selector.ts
 init_consts();
 function updateSelection2() {
   if (inputDisabled || cmdLineOpen) return;

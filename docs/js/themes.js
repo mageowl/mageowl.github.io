@@ -8,7 +8,7 @@ var __export = (target, all) => {
     __defProp(target, name, { get: all[name], enumerable: true });
 };
 
-// ts/consts.ts
+// static/ts/consts.ts
 function get(query) {
   const e = document.querySelector(query);
   if (e != null) {
@@ -19,7 +19,7 @@ function get(query) {
 }
 var el, isPrideMonth;
 var init_consts = __esm({
-  "ts/consts.ts"() {
+  "static/ts/consts.ts"() {
     el = {
       links: get("#links"),
       selector: get("#selector"),
@@ -37,7 +37,7 @@ var init_consts = __esm({
   }
 });
 
-// ts/shaders.ts
+// static/ts/shaders.ts
 var shaders_exports = {};
 __export(shaders_exports, {
   set: () => set,
@@ -143,7 +143,7 @@ function draw() {
 }
 var gl, ShaderType, shaderCache, program, running, staticUniforms, verticies, vertexBuffer, timeStart;
 var init_shaders = __esm({
-  "ts/shaders.ts"() {
+  "static/ts/shaders.ts"() {
     init_consts();
     gl = assert(el.shaderCanvas.getContext("webgl"), "Could not initialize WebGL.");
     ShaderType = /* @__PURE__ */ function(ShaderType2) {
@@ -179,10 +179,10 @@ var init_shaders = __esm({
   }
 });
 
-// ts/themes.ts
+// static/ts/themes.ts
 init_consts();
 
-// ts/messageBar.ts
+// static/ts/messageBar.ts
 init_consts();
 var visible = false;
 var message = "";
@@ -220,7 +220,7 @@ if (isPrideMonth) {
   setMessage("HAPPY PRIDE MONTH!!");
 }
 
-// ts/themes.ts
+// static/ts/themes.ts
 function color(hex) {
   return [
     (hex >> 16) / 255,

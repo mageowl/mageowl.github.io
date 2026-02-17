@@ -2,6 +2,7 @@ library_version = "0.2"
 
 [source]
 exclude = [".git", ".ignore", ".on_commit.fish", "run", "deno.json"]
+static_path = "static"
 
 [out]
 path = "docs/"
@@ -11,6 +12,6 @@ lib_file = "js/router.js"
 update_anchors = false
 
 [scripts]
-prebuild = "deno bundle --outdir js ./ts/**.ts"
+prebuild = "deno bundle --outdir ./static/js/ ./static/ts/**.ts"
 # ts cant be excluded cuz then it gets excluded from `dev watch`.
-postbuild = "rm -rf js/ docs/ts"
+postbuild = "rm -rf static/js/ docs/ts"

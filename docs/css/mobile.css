@@ -11,6 +11,7 @@ html.mobile {
 
     div#center {
         margin: 0;
+        max-width: unset;
         width: 100%;
         overflow-x: hidden;
 
