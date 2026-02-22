@@ -46,6 +46,15 @@
     --font-header: "Courier Prime";
     --font-body: "Courier Prime";
 
+    &.retro-orange {
+      --fg: #fbb41c;
+      --bg: #2a0d01;
+
+      body::after {
+        background: linear-gradient(transparent, #f8ff62, transparent) 0 0 / 8px 8px;
+      }
+    }
+
     #selector {
       mix-blend-mode: normal;
       background-color: var(--fg);
@@ -59,6 +68,10 @@
         color: var(--bg);
         background: none;
       }
+    }
+
+    h1 {
+      transition: none !important;
     }
 
     div#center {

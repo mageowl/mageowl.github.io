@@ -128,6 +128,9 @@ export const THEMES: { [key: string]: Theme } = {
   retro: {
     classNames: ["retro"],
   },
+  aperture: {
+    classNames: ["retro", "retro-orange"],
+  },
   alpha: {
     classNames: ["transparent"],
   },

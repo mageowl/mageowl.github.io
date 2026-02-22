@@ -473,6 +473,12 @@ var THEMES = {
       "retro"
     ]
   },
+  aperture: {
+    classNames: [
+      "retro",
+      "retro-orange"
+    ]
+  },
   alpha: {
     classNames: [
       "transparent"
